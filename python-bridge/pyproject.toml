@@ -40,7 +40,6 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: JavaScript",
-    "Programming Language :: TypeScript",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Documentation",
     "Topic :: System :: Systems Administration",
@@ -94,8 +93,6 @@ castplan-config = "castplan_automation.cli:config_command"
 castplan-verify = "castplan_automation.cli:verify_command"
 castplan-doctor = "castplan_automation.cli:doctor_command"
 
-[project.entry-points."console_scripts"]
-castplan-automation = "castplan_automation.cli:main"
 
 # Hatch configuration
 [tool.hatch.build.targets.wheel]

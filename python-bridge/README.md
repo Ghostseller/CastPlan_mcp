@@ -27,8 +27,9 @@ pip install castplan-automation
 uv add castplan-automation
 ```
 
-### Via uvx (run without installing)
+### Via uvx (Recommended - run without installing)
 ```bash
+# 🚀 Instant setup - no installation needed!
 uvx castplan-automation init
 ```
 
