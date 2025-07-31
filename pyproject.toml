@@ -1,0 +1,122 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "castplan-automation"
+version = "2.0.0"
+description = "CastPlan Automation MCP Server - Universal auto-configuration for any project"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "CastPlan Team" }
+]
+keywords = [
+    "mcp",
+    "castplan", 
+    "automation",
+    "documentation",
+    "bmad",
+    "hooks",
+    "ai-analysis",
+    "claude",
+    "typescript"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: JavaScript",
+    "Programming Language :: TypeScript",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Documentation",
+    "Topic :: System :: Systems Administration"
+]
+
+# Python dependencies for uv/uvx support
+requires-python = ">=3.8"
+dependencies = [
+    "nodejs >= 18.0.0",  # Specify Node.js requirement
+]
+
+[project.optional-dependencies]
+dev = [
+    "typescript",
+    "rimraf",
+    "jest",
+    "cross-env"
+]
+
+[project.urls]
+Homepage = "https://github.com/castplan/automation-mcp"
+Repository = "https://github.com/castplan/automation-mcp.git"
+Issues = "https://github.com/castplan/automation-mcp/issues"
+Documentation = "https://docs.castplan.dev/mcp"
+
+[project.scripts]
+castplan-mcp = "castplan_automation:main"
+
+# For uv/uvx compatibility - define how to run the Node.js application
+[tool.uv]
+# Specify that this is actually a Node.js package that needs Node.js runtime
+system-dependencies = ["nodejs >= 18.0.0", "npm"]
+
+# Install hooks for uv/uvx
+[tool.uv.scripts]
+install = "npm install && npm run build"
+build = "npm run build"
+start = "npm start"
+init = "npm run init"
+
+# Hatch configuration for building
+[tool.hatch.build.targets.wheel]
+packages = ["src/castplan_automation"]
+artifacts = ["dist/**/*"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "dist/",
+    "package.json",
+    "tsconfig.json",
+    "README.md",
+    "LICENSE"
+]
+
+# Development environment
+[tool.hatch.envs.default]
+dependencies = [
+    "nodejs >= 18.0.0"
+]
+
+[tool.hatch.envs.default.scripts]
+install-deps = "npm install"
+build = "npm run build"
+start = "npm start"
+test = "npm test"
+dev = "npm run dev"
+
+# Type checking environment  
+[tool.hatch.envs.typing]
+extra-dependencies = [
+    "typescript"
+]
+
+[tool.hatch.envs.typing.scripts]
+check = "npm run build"
+
+# Cross-platform installation notes
+[tool.castplan]
+install-methods = [
+    "npm install -g @castplan/automation-mcp",
+    "yarn global add @castplan/automation-mcp", 
+    "pnpm add -g @castplan/automation-mcp",
+    "uv add @castplan/automation-mcp",
+    "uvx install castplan-automation"
+]
+
+supported-platforms = ["windows", "macos", "linux"]
+node-version = ">=18.0.0"
+python-version = ">=3.8"  # For uv/uvx compatibility
