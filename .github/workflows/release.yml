@@ -23,22 +23,28 @@ jobs:
           
           Universal AI coding assistant with project memory and awareness.
           
-          ### 📦 Quick Install
+          ### 📦 Quick Install (Direct from GitHub)
           
-          **🔥 Instant setup (uv/uvx - Recommended):**
+          **🔥 Instant setup (uvx - No installation needed):**
           ```bash
-          uvx castplan-automation init
+          uvx --from git+https://github.com/Ghostseller/CastPlan_mcp.git castplan-mcp init
           ```
           
-          **📦 npm (Node.js):**
-          ```bash  
-          npm install -g @castplan/automation-mcp
+          **🚀 Install with uv:**
+          ```bash
+          uv add git+https://github.com/Ghostseller/CastPlan_mcp.git
           castplan-mcp init
           ```
           
-          **🐍 pip (Python):**
+          **📦 Install with pip:**
           ```bash
-          pip install castplan-automation
+          pip install git+https://github.com/Ghostseller/CastPlan_mcp.git
+          castplan-mcp init
+          ```
+          
+          **📦 Install with npm:**
+          ```bash  
+          npm install -g git+https://github.com/Ghostseller/CastPlan_mcp.git
           castplan-mcp init
           ```
           
@@ -56,9 +62,9 @@ jobs:
           
           ### 🔗 Links
           - [GitHub Repository](https://github.com/Ghostseller/CastPlan_mcp)
-          - [npm Package](https://www.npmjs.com/package/@castplan/automation-mcp) *(Coming Soon)*
-          - [PyPI Package](https://pypi.org/project/castplan-automation/) *(Coming Soon)*
           - [Documentation](https://github.com/Ghostseller/CastPlan_mcp#readme)
+          - [Issues & Support](https://github.com/Ghostseller/CastPlan_mcp/issues)
+          - [Contact](mailto:banessayuu@gmail.com)
           
           ### 💡 Why CastPlan MCP?
           

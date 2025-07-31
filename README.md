@@ -176,23 +176,28 @@ AI: "Analyzing against your project standards:
      Here's the updated component with your standards applied..."
 ```
 
-## 🚀 Quick Start (2 Minutes)
+## 🚀 Quick Start (30 seconds)
 
-### Step 1: Install CastPlan MCP
+### 🔥 Instant Setup (Recommended)
 ```bash
-# Choose your preferred package manager:
-npm install -g @castplan/automation-mcp
-# OR
-pip install castplan-automation
-# OR (no installation needed)
-uvx castplan-automation init
+# No installation needed - runs directly from GitHub!
+uvx --from git+https://github.com/Ghostseller/CastPlan_mcp.git castplan-mcp init
 ```
 
-### Step 2: Connect to Your AI Assistant
+### 📦 Alternative Installation Methods
 ```bash
+# Install with uv
+uv add git+https://github.com/Ghostseller/CastPlan_mcp.git
+castplan-mcp init
+
+# Install with pip  
+pip install git+https://github.com/Ghostseller/CastPlan_mcp.git
+castplan-mcp init
+
+# Install with npm
+npm install -g git+https://github.com/Ghostseller/CastPlan_mcp.git
 castplan-mcp init
 ```
-This automatically configures CastPlan MCP with your AI assistant (Claude Desktop, Cursor, VS Code, etc.)
 
 ### Step 3: Start Coding with Context!
 Open your AI assistant and try:
