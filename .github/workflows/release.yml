@@ -6,78 +6,104 @@ on:
       - 'v*'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
-    - name: Create GitHub Release
-      uses: softprops/action-gh-release@v2
       with:
-        name: CastPlan MCP ${{ github.ref_name }}
-        tag_name: ${{ github.ref_name }}
-        generate_release_notes: true
-        make_latest: true
-        body: |
-          ## 🚀 CastPlan MCP ${{ github.ref_name }}
-          
-          Universal AI coding assistant with project memory and awareness.
-          
-          ### 📦 Quick Install (Direct from GitHub)
-          
-          **🔥 Instant setup (uvx - No installation needed):**
-          ```bash
-          uvx --from git+https://github.com/Ghostseller/CastPlan_mcp.git castplan-mcp init
-          ```
-          
-          **🚀 Install with uv:**
-          ```bash
-          uv add git+https://github.com/Ghostseller/CastPlan_mcp.git
-          castplan-mcp init
-          ```
-          
-          **📦 Install with pip:**
-          ```bash
-          pip install git+https://github.com/Ghostseller/CastPlan_mcp.git
-          castplan-mcp init
-          ```
-          
-          **📦 Install with npm:**
-          ```bash  
-          npm install -g git+https://github.com/Ghostseller/CastPlan_mcp.git
-          castplan-mcp init
-          ```
-          
-          ### ✨ What This Does
-          - **Gives your AI memory** - Remembers your project structure, patterns, and decisions
-          - **Auto-configures** - Works with Claude, Cursor, VS Code, and all MCP clients
-          - **Zero setup** - Detects and configures everything automatically
-          - **Universal** - Cross-platform support (Windows, macOS, Linux)
-          
-          ### 🎯 Key Features
-          - **Project-aware AI assistance** - AI understands your specific codebase
-          - **Documentation automation** - Keeps docs in sync with code
-          - **Smart task management** - AI-powered project planning (BMAD)
-          - **Workflow intelligence** - Learns and automates your development patterns
-          
-          ### 🔗 Links
-          - [GitHub Repository](https://github.com/Ghostseller/CastPlan_mcp)
-          - [Documentation](https://github.com/Ghostseller/CastPlan_mcp#readme)
-          - [Issues & Support](https://github.com/Ghostseller/CastPlan_mcp/issues)
-          - [Contact](mailto:banessayuu@gmail.com)
-          
-          ### 💡 Why CastPlan MCP?
-          
-          Stop explaining your project to AI every time. CastPlan MCP gives your AI assistant **persistent memory** of your codebase, so it can provide context-aware help from day one.
-          
-          **Before:** *"What's your tech stack? Where are your components? What's your architecture?"*
-          
-          **After:** *"Based on your existing UserCard pattern, here's a ProfileCard that matches your design system..."*
-          
-        draft: false
-        prerelease: false
+        fetch-depth: 0
+      
+    - name: Create Release Notes
+      run: |
+        cat > release_notes.md << 'EOF'
+        ## 🚀 CastPlan MCP ${{ github.ref_name }}
+        
+        Universal AI coding assistant with project memory and awareness.
+        
+        ### 📦 Quick Install (Direct from GitHub)
+        
+        **🔥 Instant setup (uvx - No installation needed):**
+        ```bash
+        uvx --from git+https://github.com/Ghostseller/CastPlan_mcp.git castplan-mcp init
+        ```
+        
+        **🚀 Install with uv:**
+        ```bash
+        uv add git+https://github.com/Ghostseller/CastPlan_mcp.git
+        castplan-mcp init
+        ```
+        
+        **📦 Install with pip:**
+        ```bash
+        pip install git+https://github.com/Ghostseller/CastPlan_mcp.git
+        castplan-mcp init
+        ```
+        
+        **📦 Install with npm:**
+        ```bash  
+        npm install -g git+https://github.com/Ghostseller/CastPlan_mcp.git
+        castplan-mcp init
+        ```
+        
+        **🛠️ Alternative Installation Methods:**
+        ```bash
+        # Clone and use alternative installer
+        git clone https://github.com/Ghostseller/CastPlan_mcp.git
+        cd CastPlan_mcp
+        node scripts/install-alternatives.js smart
+        ```
+        
+        ### ✨ What This Does
+        - **Gives your AI memory** - Remembers your project structure, patterns, and decisions
+        - **Auto-configures** - Works with Claude, Cursor, VS Code, and all MCP clients
+        - **Zero setup** - Detects and configures everything automatically
+        - **Universal** - Cross-platform support (Windows, macOS, Linux)
+        
+        ### 🎯 Key Features
+        - **Project-aware AI assistance** - AI understands your specific codebase
+        - **Documentation automation** - Keeps docs in sync with code
+        - **Smart task management** - AI-powered project planning (BMAD)
+        - **Workflow intelligence** - Learns and automates your development patterns
+        
+        ### 🚀 What's New in ${{ github.ref_name }}
+        - **설치 문제 완전 해결** - deprecated 패키지 경고 제거
+        - **다중 설치 방법 지원** - npx, git-clone, dev, docker, smart 방식 제공
+        - **Python bridge 안정성 향상** - 패키지명 수정 및 호환성 개선
+        - **종합 설치 가이드** - INSTALL.md로 상세한 설치 방법 문서화
+        - **크로스 플랫폼 호환성** - Windows, macOS, Linux 모두 안정적으로 지원
+        
+        ### 🔗 Links
+        - [GitHub Repository](https://github.com/Ghostseller/CastPlan_mcp)
+        - [Installation Guide](https://github.com/Ghostseller/CastPlan_mcp/blob/main/INSTALL.md)
+        - [Issues & Support](https://github.com/Ghostseller/CastPlan_mcp/issues)
+        - [Contact](mailto:banessayuu@gmail.com)
+        
+        ### 💡 Why CastPlan MCP?
+        
+        Stop explaining your project to AI every time. CastPlan MCP gives your AI assistant **persistent memory** of your codebase, so it can provide context-aware help from day one.
+        
+        **Before:** *"What's your tech stack? Where are your components? What's your architecture?"*
+        
+        **After:** *"Based on your existing UserCard pattern, here's a ProfileCard that matches your design system..."*
+        EOF
+        
+    - name: Create GitHub Release
+      run: |
+        gh release create ${{ github.ref_name }} \
+          --title "CastPlan MCP ${{ github.ref_name }}" \
+          --notes-file release_notes.md \
+          --latest
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ github.token }}
