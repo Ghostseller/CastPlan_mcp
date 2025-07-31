@@ -15,9 +15,12 @@ jobs:
       uses: actions/checkout@v4
       
     - name: Create GitHub Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         name: CastPlan MCP ${{ github.ref_name }}
+        tag_name: ${{ github.ref_name }}
+        generate_release_notes: true
+        make_latest: true
         body: |
           ## 🚀 CastPlan MCP ${{ github.ref_name }}
           
