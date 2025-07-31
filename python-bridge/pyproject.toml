@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "castplan-automation"
-version = "2.0.2"
+version = "2.0.4"
 description = "Python bridge for CastPlan Automation MCP Server - Universal auto-configuration"
 readme = "README.md"
 license = { text = "MIT" }

@@ -28,9 +28,31 @@ jobs:
     - name: Install Node.js dependencies
       run: npm install
       
-    - name: Build TypeScript package
+    - name: Build TypeScript package  
       run: npm run build
       
+    - name: Verify build output
+      run: |
+        echo "Checking dist directory..."
+        ls -la dist/
+        echo "Checking package.json..."
+        cat package.json | grep '"name"\|"version"'
+        
+    - name: Check npm authentication
+      run: npm whoami
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
+    - name: Dry run npm publish
+      run: npm publish --dry-run --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
+    - name: Publish to npm
+      run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
     - name: Install Python build tools
       run: |
         python -m pip install --upgrade pip
@@ -40,16 +62,12 @@ jobs:
       run: |
         cd python-bridge
         python -m build
-        
-    - name: Publish to npm
-      run: npm publish --access public
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        ls -la dist/
         
     - name: Publish to PyPI
       run: |
         cd python-bridge
-        python -m twine upload dist/* --skip-existing
+        python -m twine upload dist/* --skip-existing --verbose
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
@@ -61,32 +79,37 @@ jobs:
         body: |
           ## 🚀 CastPlan MCP ${{ github.ref_name }}
           
-          Universal MCP Server for AI coding assistants.
+          Universal AI coding assistant memory and project awareness.
           
           ### 📦 Quick Install
           
-          **uv/uvx (Recommended):**
+          **🔥 Instant setup (uv/uvx):**
           ```bash
           uvx castplan-automation init
           ```
           
-          **npm:**
+          **📦 npm:**
           ```bash  
           npm install -g @castplan/automation-mcp
           castplan-mcp init
           ```
           
-          **pip:**
+          **🐍 pip:**
           ```bash
           pip install castplan-automation
           castplan-mcp init
           ```
           
-          ### ✨ Features
+          ### ✨ What's New
           - Universal MCP compatibility (Claude, Cursor, VS Code, etc.)
-          - Automatic AI assistant configuration  
-          - Cross-platform support (Windows, macOS, Linux)
-          - Zero-config auto-detection
+          - Zero-config auto-detection and setup
+          - Cross-platform support (Windows, macOS, Linux)  
+          - Project-aware AI assistance
+          
+          ### 🔗 Links
+          - [npm Package](https://www.npmjs.com/package/@castplan/automation-mcp)
+          - [PyPI Package](https://pypi.org/project/castplan-automation/)
+          - [Documentation](https://github.com/Ghostseller/CastPlan_mcp#readme)
           
         draft: false
         prerelease: false
