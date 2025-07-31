@@ -1,5 +1,5 @@
 import { Logger } from 'winston';
-import sqlite3 from 'sqlite3';
+import Database from 'better-sqlite3';
 import { promisify } from 'util';
 import { v4 as uuidv4 } from 'uuid';
 import {
@@ -32,7 +32,7 @@ export class WorkDocumentConnectionService implements IWorkDocumentConnectionSer
       }
 
       this.logger.info(`Initializing SQLite database at: ${this.dbPath}`);
-      this.db = new sqlite3.Database(this.dbPath);
+      this.db = new Database(this.dbPath);
       
       // Promisify database methods
       const dbRun = promisify(this.db.run.bind(this.db));

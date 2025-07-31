@@ -1,5 +1,5 @@
 import { Logger } from 'winston';
-import sqlite3 from 'sqlite3';
+import Database from 'better-sqlite3';
 import { promisify } from 'util';
 import { v4 as uuidv4 } from 'uuid';
 import {
@@ -37,7 +37,7 @@ export class DocumentLifecycleService implements IDocumentLifecycleService {
     try {
       // Only create real database if mock not provided
       if (!this.db) {
-        this.db = new sqlite3.Database(this.dbPath);
+        this.db = new Database(this.dbPath);
         
         // Promisify database methods only for real database
         const dbRun = promisify(this.db.run.bind(this.db));

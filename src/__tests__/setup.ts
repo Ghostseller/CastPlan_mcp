@@ -1,7 +1,10 @@
 /**
  * Global test setup file for Jest
  * Handles memory optimization, cleanup, and consistent test environment
+ * Integrated with Better-SQLite3 migration system
  */
+
+import { BetterSqliteTestFramework } from './helpers/BetterSqliteTestFramework';
 
 // Memory optimization: Set reasonable limits
 if (typeof global.gc === 'function') {
@@ -54,10 +57,13 @@ beforeAll(() => {
   };
 });
 
-afterAll(() => {
+afterAll(async () => {
   // Restore original console methods
   console.error = originalError;
   console.warn = originalWarn;
+  
+  // Clean up any remaining better-sqlite3 test databases
+  await BetterSqliteTestFramework.cleanupAllDatabases();
 });
 
 // Global cleanup after each test suite
@@ -178,7 +184,7 @@ export const restoreRealTimers = () => {
   jest.useRealTimers();
 };
 
-// Database cleanup utility
+// Database cleanup utility (legacy sqlite3 support)
 export const cleanupDatabase = async (dbConnection: any) => {
   if (dbConnection && typeof dbConnection.close === 'function') {
     try {
@@ -190,6 +196,17 @@ export const cleanupDatabase = async (dbConnection: any) => {
       });
     } catch (error) {
       console.warn('Database cleanup failed:', error);
+    }
+  }
+};
+
+// Better-SQLite3 database cleanup utility
+export const cleanupBetterSqliteDatabase = async (connection: any) => {
+  if (connection && typeof connection.disconnect === 'function') {
+    try {
+      connection.disconnect();
+    } catch (error) {
+      console.warn('Better-SQLite3 cleanup failed:', error);
     }
   }
 };

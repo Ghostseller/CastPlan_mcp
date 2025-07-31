@@ -81,7 +81,7 @@ class NodeJSInstaller:
     """
     
     def __init__(self, 
-                 nodejs_package: str = "@castplan/ultimate-automation-mcp",
+                 nodejs_package: str = "@castplan/automation-mcp",
                  console: Optional[Console] = None):
         self.nodejs_package = nodejs_package
         self.console = console or Console()
@@ -104,8 +104,8 @@ class NodeJSInstaller:
                 "name": "uvx",
                 "executables": ["uvx", "uvx.exe"] if platform.system() == "Windows" else ["uvx"],
                 "supports_nodejs": True,
-                "install_cmd": ["--from", "castplan-ultimate-automation", "castplan-ultimate"],
-                "run_cmd": ["castplan-ultimate"],
+                "install_cmd": ["--from", "git+https://github.com/Ghostseller/CastPlan_mcp.git", "castplan-mcp"],
+                "run_cmd": ["castplan-mcp"],
                 "priority": 100,
                 "features": ["ephemeral", "isolated", "fast", "no-install"]
             },
@@ -113,8 +113,8 @@ class NodeJSInstaller:
                 "name": "uv", 
                 "executables": ["uv", "uv.exe"] if platform.system() == "Windows" else ["uv"],
                 "supports_nodejs": True,
-                "install_cmd": ["add", "castplan-ultimate-automation"], 
-                "run_cmd": ["run", "castplan-ultimate"],
+                "install_cmd": ["add", "castplan-automation"], 
+                "run_cmd": ["run", "castplan-mcp"],
                 "priority": 90,
                 "features": ["fast", "reliable", "modern", "lockfile"]
             },
@@ -122,8 +122,8 @@ class NodeJSInstaller:
                 "name": "pip",
                 "executables": ["pip", "pip3"] + (["pip.exe"] if platform.system() == "Windows" else []),
                 "supports_nodejs": True,
-                "install_cmd": ["install", "castplan-ultimate-automation"],
-                "run_cmd": ["castplan-ultimate"],
+                "install_cmd": ["install", "castplan-automation"],
+                "run_cmd": ["castplan-mcp"],
                 "priority": 70,
                 "features": ["universal", "stable", "fallback"]
             }
@@ -646,9 +646,9 @@ class NodeJSInstaller:
         cmd = [uvx_manager.path]
         
         if ephemeral:
-            cmd.extend(["--from", "castplan-ultimate-automation", "castplan-ultimate"])
+            cmd.extend(["--from", "git+https://github.com/Ghostseller/CastPlan_mcp.git", "castplan-mcp"])
         else:
-            cmd.extend(["castplan-ultimate-automation"])
+            cmd.extend(["castplan-automation"])
             
         if args:
             cmd.extend(args)
@@ -709,9 +709,9 @@ class NodeJSInstaller:
         cmd = [uv_manager.path]
         
         if project_mode:
-            cmd.extend(["add", "castplan-ultimate-automation"])
+            cmd.extend(["add", "castplan-automation"])
         else:
-            cmd.extend(["tool", "install", "castplan-ultimate-automation"])
+            cmd.extend(["tool", "install", "castplan-automation"])
             
         try:
             with Progress(
