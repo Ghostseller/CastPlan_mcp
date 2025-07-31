@@ -5,11 +5,6 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version to release (e.g., v2.0.0)'
-        required: true
-        default: 'v2.0.0'
 
 jobs:
   release:
@@ -35,9 +30,6 @@ jobs:
       
     - name: Build TypeScript package
       run: npm run build
-      
-    - name: Run tests
-      run: npm test
       
     - name: Install Python build tools
       run: |
@@ -67,65 +59,36 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref_name || github.event.inputs.version }}
-        release_name: CastPlan MCP ${{ github.ref_name || github.event.inputs.version }}
+        tag_name: ${{ github.ref }}
+        release_name: CastPlan MCP ${{ github.ref }}
         body: |
-          ## 🚀 CastPlan MCP ${{ github.ref_name || github.event.inputs.version }}
+          ## 🚀 CastPlan MCP Release
           
           Universal MCP Server for AI coding assistants.
           
           ### 📦 Installation Options
           
-          **npm (Node.js):**
+          **uv/uvx (Recommended):**
           ```bash
+          uvx castplan-automation init
+          ```
+          
+          **npm:**
+          ```bash  
           npm install -g @castplan/automation-mcp
           castplan-mcp init
           ```
           
-          **uv/uvx (Python):**
-          ```bash
-          uvx castplan-automation init
-          # OR
-          uv add castplan-automation
-          castplan-mcp init
-          ```
-          
-          **pip (Python):**
+          **pip:**
           ```bash
           pip install castplan-automation
           castplan-mcp init
           ```
           
           ### ✨ Features
-          - Universal MCP compatibility (Claude, Cursor, VS Code, etc.)
-          - Automatic AI assistant configuration
-          - Project-aware documentation and task management
-          - Cross-platform support (Windows, macOS, Linux)
-          
-          ### 🔗 Links
-          - [GitHub Repository](https://github.com/Ghostseller/CastPlan_mcp)
-          - [npm Package](https://www.npmjs.com/package/@castplan/automation-mcp)
-          - [PyPI Package](https://pypi.org/project/castplan-automation/)
+          - Universal MCP compatibility
+          - Automatic configuration
+          - Cross-platform support
           
         draft: false
         prerelease: false
-        
-    - name: Upload npm package to release
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./castplan-automation-mcp-2.0.0.tgz
-        asset_name: castplan-automation-mcp-2.0.0.tgz
-        asset_content_type: application/gzip
-        
-    - name: Upload Python wheel to release
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./python-bridge/dist/castplan_automation-2.0.0-py3-none-any.whl
-        asset_name: castplan_automation-2.0.0-py3-none-any.whl
-        asset_content_type: application/zip
