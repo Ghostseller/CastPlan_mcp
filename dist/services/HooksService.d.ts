@@ -1,0 +1,48 @@
+import { EventEmitter } from 'events';
+import { HookEvent, HookResponse, FileWatchConfig, NotificationConfig, HookRequest } from '../types/hooks.types.js';
+import { HooksServiceDependencies } from '../interfaces/dependencies.js';
+export declare class HooksService extends EventEmitter {
+    private projectRoot;
+    private watchers;
+    private eventHistory;
+    private config;
+    private fileSystem;
+    private pathAdapter;
+    private watcherFactory;
+    constructor(projectRoot: string, dependencies?: HooksServiceDependencies);
+    private getDefaultConfig;
+    private setupEventHandlers;
+    processHookRequest(request: HookRequest): Promise<HookResponse>;
+    private processEvent;
+    private handlePreWorkEvent;
+    private handlePostWorkEvent;
+    private handleFileChangeEvent;
+    private handleSessionStartEvent;
+    private handleSessionEndEvent;
+    startFileWatching(patterns?: string[]): Promise<void>;
+    stopFileWatching(): Promise<void>;
+    private handleFileSystemEvent;
+    setupGitHooks(): Promise<boolean>;
+    private generatePreCommitHook;
+    private generatePostCommitHook;
+    private generatePreWorkRecommendations;
+    private runPostWorkValidations;
+    private isSignificantChange;
+    private setupSessionMonitoring;
+    private cleanupSessionMonitoring;
+    private generateSessionSummary;
+    private notify;
+    private logEvent;
+    private updateConfig;
+    private handleFileChange;
+    private handlePreWork;
+    private handlePostWork;
+    private handleSessionStart;
+    private handleSessionEnd;
+    getEventHistory(): Promise<HookEvent[]>;
+    getActiveWatchers(): Promise<string[]>;
+    getConfig(): Promise<any>;
+    updateNotificationConfig(config: Partial<NotificationConfig>): Promise<void>;
+    updateFileWatchConfig(config: Partial<FileWatchConfig>): Promise<void>;
+}
+//# sourceMappingURL=HooksService.d.ts.map

@@ -1,0 +1,16 @@
+/**
+ * Configuration Management System
+ *
+ * Provides universal configuration management for CastPlan Ultimate MCP Server
+ * Supports automatic project detection, multi-package manager support,
+ * and cross-platform compatibility.
+ *
+ * Created: 2025-07-31
+ */
+export { ConfigurationManager } from './ConfigurationManager.js';
+export { ProjectAnalyzer } from './ProjectAnalyzer.js';
+export { PackageManagerDetector } from './PackageManagerDetector.js';
+export { EnvGenerator } from './EnvGenerator.js';
+export { ClaudeDesktopConfigGenerator } from './ClaudeDesktopConfigGenerator.js';
+export { StandardMCPConfigGenerator } from './StandardMCPConfigGenerator.js';
+//# sourceMappingURL=index.js.map
