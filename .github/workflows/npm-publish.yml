@@ -27,6 +27,12 @@ jobs:
       # Skip build - using pre-built dist folder
       # Skip tests - already tested during development
       
+      - name: Create .npmrc
+        run: |
+          echo "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" > ~/.npmrc
+          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
+          echo "always-auth=true" >> ~/.npmrc
+      
       - name: Publish to npm
         run: npm publish --access public
         env:
