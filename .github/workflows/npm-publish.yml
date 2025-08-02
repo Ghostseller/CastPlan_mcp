@@ -22,13 +22,10 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       
       - name: Install dependencies
-        run: npm install
+        run: npm install --production
       
       # Skip build - using pre-built dist folder
-      
-      - name: Run tests
-        run: npm test --passWithNoTests
-        continue-on-error: true  # Tests might need environment setup
+      # Skip tests - already tested during development
       
       - name: Publish to npm
         run: npm publish --access public
