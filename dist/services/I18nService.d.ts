@@ -2,7 +2,7 @@
  * Internationalization Service
  * Provides centralized locale and timezone handling for CastPlan MCP
  */
-import { LocalizationConfig } from '../types/index.js';
+import { LocalizationConfig } from '../types/index.ts';
 export interface I18nConfig {
     locale: string;
     timezone: string;

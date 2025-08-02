@@ -8,7 +8,7 @@
  * Created: 2025-07-30
  */
 import { Logger } from 'winston';
-import { IAsyncFileSystem, IPathUtils } from '../interfaces/FileSystemAdapter.js';
+import { IAsyncFileSystem, IPathUtils } from '../interfaces/FileSystemAdapter.ts';
 export interface DocumentConnections {
     workItems: string[];
     linkedDocuments: string[];

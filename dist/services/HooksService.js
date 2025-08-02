@@ -2,6 +2,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as chokidar from 'chokidar';
 import { EventEmitter } from 'events';
+import { Mutex } from 'async-mutex';
+import { getErrorMessage } from '../utils/typeHelpers.ts';
 // Default implementations
 class DefaultFileSystemAdapter {
     existsSync(path) {
@@ -59,6 +61,9 @@ export class HooksService extends EventEmitter {
     fileSystem;
     pathAdapter;
     watcherFactory;
+    // Thread safety mutexes
+    eventMutex = new Mutex();
+    watcherMutex = new Mutex();
     constructor(projectRoot, dependencies) {
         super();
         this.projectRoot = projectRoot;
@@ -126,7 +131,7 @@ export class HooksService extends EventEmitter {
         catch (error) {
             return {
                 success: false,
-                message: `Hook processing failed: ${error.message}`
+                message: `Hook processing failed: ${getErrorMessage(error)}`
             };
         }
     }
@@ -253,12 +258,14 @@ export class HooksService extends EventEmitter {
         await this.notify('system', 'File watching started');
     }
     async stopFileWatching() {
-        const watcherEntries = Array.from(this.watchers.entries());
-        for (const [name, watcher] of watcherEntries) {
-            await watcher.close();
-            this.watchers.delete(name);
-        }
-        await this.notify('system', 'File watching stopped');
+        return this.watcherMutex.runExclusive(async () => {
+            const watcherEntries = Array.from(this.watchers.entries());
+            for (const [name, watcher] of watcherEntries) {
+                await watcher.close();
+                this.watchers.delete(name);
+            }
+            await this.notify('system', 'File watching stopped');
+        });
     }
     async handleFileSystemEvent(eventType, filePath) {
         const event = {
@@ -386,7 +393,7 @@ fi
             validations.push({
                 type: 'error',
                 status: 'failed',
-                message: `Validation error: ${error.message}`
+                message: `Validation error: ${getErrorMessage(error)}`
             });
         }
         return validations;
@@ -455,7 +462,7 @@ fi
                 this.fileSystem.appendFileSync(this.config.notifications.logFile, logMessage + '\n');
             }
             catch (error) {
-                console.warn('Failed to write to log file:', error.message);
+                console.warn('Failed to write to log file:', getErrorMessage(error));
             }
         }
         // Webhook notification
@@ -465,16 +472,19 @@ fi
                 console.log('Webhook notification:', message);
             }
             catch (error) {
-                console.warn('Failed to send webhook notification:', error.message);
+                console.warn('Failed to send webhook notification:', getErrorMessage(error));
             }
         }
     }
     logEvent(event) {
-        this.eventHistory.push(event);
-        // Keep only last 1000 events to prevent memory issues
-        if (this.eventHistory.length > 1000) {
-            this.eventHistory = this.eventHistory.slice(-1000);
-        }
+        this.eventMutex.runExclusive(() => {
+            // Thread-safe event history update using immutable pattern
+            this.eventHistory = [...this.eventHistory, event];
+            // Keep only last 1000 events to prevent memory issues
+            if (this.eventHistory.length > 1000) {
+                this.eventHistory = this.eventHistory.slice(-1000);
+            }
+        });
     }
     updateConfig(partialConfig) {
         this.config = {

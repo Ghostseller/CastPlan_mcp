@@ -7,10 +7,10 @@
  * - Hooks Integration
  * - Enhanced AI-powered Documentation Features
  */
-export * from './bmad.types.js';
-export * from './documentation.types.js';
-export * from './hooks.types.js';
-export * from './enhanced.types.js';
+export * from './bmad.types.ts';
+export * from './documentation.types.ts';
+export * from './hooks.types.ts';
+export * from './enhanced.types.ts';
 export interface MCPResource {
     uri: string;
     name: string;

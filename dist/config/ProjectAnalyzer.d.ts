@@ -7,7 +7,7 @@
  * Created: 2025-07-31
  */
 import { Logger } from 'winston';
-import { ProjectInfo, PackageManagerType } from './types.js';
+import { ProjectInfo, PackageManagerType } from './types.ts';
 export interface ProjectAnalysisResult {
     projectInfo: ProjectInfo;
     detectedFrameworks: string[];

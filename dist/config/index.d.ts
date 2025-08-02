@@ -7,12 +7,12 @@
  *
  * Created: 2025-07-31
  */
-export { ConfigurationManager } from './ConfigurationManager.js';
-export { ProjectAnalyzer } from './ProjectAnalyzer.js';
-export { PackageManagerDetector } from './PackageManagerDetector.js';
-export { EnvGenerator } from './EnvGenerator.js';
-export { ClaudeDesktopConfigGenerator } from './ClaudeDesktopConfigGenerator.js';
-export { StandardMCPConfigGenerator } from './StandardMCPConfigGenerator.js';
-export type { UniversalConfig, ProjectInfo, PackageManagerInfo, PlatformInfo, ConfigSource, ServiceConfig, RuntimeConfig, EnvironmentConfig, ConfigurationManagerOptions, ConfigValidationResult, ConfigValidationError, ConfigValidationWarning, CastPlanConfigFile, ClaudeDesktopConfig } from './types.js';
-export type { StandardMCPConfig, MCPServerConfig, MCPConfigFile } from './StandardMCPConfigGenerator.js';
+export { ConfigurationManager } from './ConfigurationManager.ts';
+export { ProjectAnalyzer } from './ProjectAnalyzer.ts';
+export { PackageManagerDetector } from './PackageManagerDetector.ts';
+export { EnvGenerator } from './EnvGenerator.ts';
+export { ClaudeDesktopConfigGenerator } from './ClaudeDesktopConfigGenerator.ts';
+export { StandardMCPConfigGenerator } from './StandardMCPConfigGenerator.ts';
+export type { UniversalConfig, ProjectInfo, PackageManagerInfo, PlatformInfo, ConfigSource, ServiceConfig, RuntimeConfig, EnvironmentConfig, ConfigurationManagerOptions, ConfigValidationResult, ConfigValidationError, ConfigValidationWarning, CastPlanConfigFile, ClaudeDesktopConfig } from './types.ts';
+export type { StandardMCPConfig, MCPServerConfig, MCPConfigFile } from './StandardMCPConfigGenerator.ts';
 //# sourceMappingURL=index.d.ts.map

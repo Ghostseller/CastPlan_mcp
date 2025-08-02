@@ -6,7 +6,7 @@
  * Created: 2025-07-31
  */
 import { Logger } from 'winston';
-import { EnvironmentConfig, ProjectInfo } from './types.js';
+import { EnvironmentConfig, ProjectInfo } from './types.ts';
 export interface EnvGenerationOptions {
     /** Custom environment prefix */
     prefix?: string;

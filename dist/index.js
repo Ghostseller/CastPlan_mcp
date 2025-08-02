@@ -17,24 +17,25 @@ import { CallToolRequestSchema, ErrorCode, ListResourcesRequestSchema, ListTools
 import * as winston from 'winston';
 import * as path from 'path';
 // Import services
-import { BMADService } from './services/BMADService.js';
-import { DocumentationService } from './services/DocumentationService.js';
-import { HooksService } from './services/HooksService.js';
-import { DateTimeService } from './services/DateTimeService.js';
-import { DocumentLifecycleService } from './services/DocumentLifecycleService.js';
-import { WorkDocumentConnectionService } from './services/WorkDocumentConnectionService.js';
-import { DocumentTreeService } from './services/DocumentTreeService.js';
-import { AIAnalysisService } from './services/AIAnalysisService.js';
-import { I18nService } from './services/I18nService.js';
+import { BMADService } from './services/BMADService.ts';
+import { DocumentationService } from './services/DocumentationService.ts';
+import { HooksService } from './services/HooksService.ts';
+import { DateTimeService } from './services/DateTimeService.ts';
+import { DocumentLifecycleService } from './services/DocumentLifecycleService.ts';
+import { WorkDocumentConnectionService } from './services/WorkDocumentConnectionService.ts';
+import { DocumentTreeService } from './services/DocumentTreeService.ts';
+import { AIAnalysisService } from './services/AIAnalysisService.ts';
+import { I18nService } from './services/I18nService.ts';
+import { RedisCacheService } from './services/RedisCacheService.ts';
 // Import tool handlers
-import { registerBMADTools } from './tools/bmad/index.js';
-import { registerDocumentationTools } from './tools/documentation/index.js';
-import { registerHooksTools } from './tools/hooks/index.js';
-import { registerEnhancedTools } from './tools/enhanced/index.js';
+import { registerBMADTools } from './tools/bmad/index.ts';
+import { registerDocumentationTools } from './tools/documentation/index.ts';
+import { registerHooksTools } from './tools/hooks/index.ts';
+import { registerEnhancedTools } from './tools/enhanced/index.ts';
 // Import error recovery and monitoring
-import { ErrorRecoveryManager } from './utils/ErrorRecoveryManager.js';
-import { HealthMonitor, BuiltInHealthChecks } from './utils/HealthMonitor.js';
-import { GracefulDegradationManager } from './utils/GracefulDegradation.js';
+import { ErrorRecoveryManager } from './utils/ErrorRecoveryManager.ts';
+import { HealthMonitor, BuiltInHealthChecks } from './utils/HealthMonitor.ts';
+import { GracefulDegradationManager } from './utils/GracefulDegradation.ts';
 class CastPlanUltimateAutomationServer {
     server;
     config;
@@ -50,6 +51,7 @@ class CastPlanUltimateAutomationServer {
     treeService;
     aiService;
     i18nService;
+    cacheService;
     // Tool registry
     tools = new Map();
     toolDefinitions = [];
@@ -284,9 +286,31 @@ class CastPlanUltimateAutomationServer {
             this.treeService = new DocumentTreeService(this.config.databasePath, this.logger);
             this.logger.info('✅ Enhanced Documentation Services initialized');
             this.logger.info(`✅ I18nService initialized (locale: ${this.config.locale}, timezone: ${this.config.timeZone})`);
+            // Initialize Redis Cache Service
+            try {
+                this.cacheService = new RedisCacheService(this.logger, {
+                    host: process.env.REDIS_HOST || 'localhost',
+                    port: parseInt(process.env.REDIS_PORT || '6379'),
+                    keyPrefix: 'castplan:',
+                    defaultTTL: 3600,
+                    enableCompression: true,
+                    enableMetrics: true
+                });
+                // Connect asynchronously, don't block initialization\n        this.cacheService.connect().then(() => {\n          this.logger.info('✅ Redis Cache Service connected');\n        }).catch((error) => {\n          this.logger.warn('Redis Cache Service connection failed:', error);\n        });
+                this.logger.info('✅ Redis Cache Service initialized');
+            }
+            catch (error) {
+                this.logger.warn('Redis Cache Service initialization failed, AI features may be limited:', error);
+                // Continue without Redis cache
+            }
             if (this.config.ai.enabled && this.config.ai.apiKey && this.config.ai.provider) {
-                this.aiService = new AIAnalysisService(this.config.ai.provider, this.logger);
-                this.logger.info(`✅ AI Analysis Service initialized (${this.config.ai.provider})`);
+                if (this.cacheService) {
+                    this.aiService = new AIAnalysisService(this.config.ai.provider, this.logger, this.cacheService);
+                    this.logger.info(`✅ AI Analysis Service initialized with Redis cache (${this.config.ai.provider})`);
+                }
+                else {
+                    this.logger.warn('AI Analysis Service cannot be initialized without cache service');
+                }
             }
         }
     }

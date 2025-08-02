@@ -6,8 +6,8 @@
  * intelligent environment detection, and comprehensive configuration management.
  */
 import { Command } from 'commander';
-import { ConfigurationManager } from './config/ConfigurationManager.js';
-import { PackageManagerDetector } from './config/PackageManagerDetector.js';
+import { ConfigurationManager } from './config/ConfigurationManager.ts';
+import { PackageManagerDetector } from './config/PackageManagerDetector.ts';
 import { promises as fs } from 'fs';
 import os from 'os';
 import winston from 'winston';

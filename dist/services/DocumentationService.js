@@ -1,5 +1,6 @@
-import { NodeSyncFileSystem, NodePathUtils } from '../adapters/NodeFileSystemAdapter.js';
-import { I18nService } from './I18nService.js';
+import { NodeSyncFileSystem, NodePathUtils } from '../adapters/NodeFileSystemAdapter.ts';
+import { I18nService } from './I18nService.ts';
+import { Mutex } from 'async-mutex';
 export class DocumentationService {
     projectRoot;
     docsRoot;
@@ -9,6 +10,7 @@ export class DocumentationService {
     fs;
     path;
     i18nService;
+    historyMutex = new Mutex();
     // Documentation category mapping
     DOC_CATEGORIES = {
         frontend: {
@@ -286,33 +288,36 @@ export class DocumentationService {
         return updates;
     }
     async recordChangeHistory(context, changes) {
-        const record = {
-            timestamp: new Date().toISOString(),
-            files: context.files,
-            changes,
-            context: context.context,
-            category: [context.category]
-        };
-        this.changeHistory.push(record);
-        // Also write to file
-        const changesFile = this.path.join(this.docsRoot, 'CHANGE_HISTORY.md');
-        const entry = this.formatChangeEntry(record);
-        if (this.fs.existsSync(changesFile)) {
-            const existingContent = this.fs.readFileSync(changesFile, 'utf8');
-            this.fs.writeFileSync(changesFile, entry + existingContent);
-        }
-        else {
-            const headerTitle = this.i18nService.translate('docs.changeHistoryTitle', 'CastPlan Documentation Change History');
-            const headerDescription = this.i18nService.translate('docs.changeHistoryDescription', 'This file automatically records documentation changes that occur during project development.');
-            const header = `# ${headerTitle}
+        return this.historyMutex.runExclusive(async () => {
+            const record = {
+                timestamp: new Date().toISOString(),
+                files: context.files,
+                changes,
+                context: context.context,
+                category: [context.category]
+            };
+            // Thread-safe array update using immutable pattern
+            this.changeHistory = [...this.changeHistory, record];
+            // Also write to file
+            const changesFile = this.path.join(this.docsRoot, 'CHANGE_HISTORY.md');
+            const entry = this.formatChangeEntry(record);
+            if (this.fs.existsSync(changesFile)) {
+                const existingContent = this.fs.readFileSync(changesFile, 'utf8');
+                this.fs.writeFileSync(changesFile, entry + existingContent);
+            }
+            else {
+                const headerTitle = this.i18nService.translate('docs.changeHistoryTitle', 'CastPlan Documentation Change History');
+                const headerDescription = this.i18nService.translate('docs.changeHistoryDescription', 'This file automatically records documentation changes that occur during project development.');
+                const header = `# ${headerTitle}
 
 ${headerDescription}
 
 ---
 
 `;
-            this.fs.writeFileSync(changesFile, header + entry);
-        }
+                this.fs.writeFileSync(changesFile, header + entry);
+            }
+        });
     }
     formatChangeEntry(record) {
         const date = this.i18nService.formatDate(new Date(record.timestamp));

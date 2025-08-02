@@ -7,7 +7,7 @@
  * Created: 2025-07-31
  */
 import { Logger } from 'winston';
-import { ProjectInfo, EnvironmentConfig, PlatformInfo } from './types.js';
+import { ProjectInfo, EnvironmentConfig, PlatformInfo } from './types.ts';
 export interface MCPServerConfig {
     command: string;
     args: string[];

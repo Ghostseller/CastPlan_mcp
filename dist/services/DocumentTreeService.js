@@ -1,6 +1,7 @@
-import sqlite3 from 'sqlite3';
-import { promisify } from 'util';
+import Database from 'better-sqlite3';
 import { v4 as uuidv4 } from 'uuid';
+import { Mutex } from 'async-mutex';
+import { getErrorMessage } from '../utils/typeHelpers.ts';
 /**
  * Document Tree Structure Service
  *
@@ -13,6 +14,8 @@ export class DocumentTreeService {
     db;
     dbPath;
     logger;
+    // Thread safety mutex
+    dbMutex = new Mutex();
     constructor(databasePath, logger, mockDb) {
         this.dbPath = databasePath;
         this.logger = logger;
@@ -25,14 +28,20 @@ export class DocumentTreeService {
         try {
             // Only create real database if mock not provided
             if (!this.db) {
-                this.db = new sqlite3.Database(this.dbPath);
-                // Promisify database methods only for real database
-                const dbRun = promisify(this.db.run.bind(this.db));
-                const dbAll = promisify(this.db.all.bind(this.db));
-                const dbGet = promisify(this.db.get.bind(this.db));
-                this.db.run = dbRun;
-                this.db.all = dbAll;
-                this.db.get = dbGet;
+                this.db = new Database(this.dbPath);
+                // Create async wrappers for synchronous better-sqlite3 methods
+                const originalRun = this.db.run.bind(this.db);
+                const originalAll = this.db.all.bind(this.db);
+                const originalGet = this.db.get.bind(this.db);
+                this.db.run = async (sql, params) => {
+                    return originalRun(sql, params);
+                };
+                this.db.all = async (sql, params) => {
+                    return originalAll(sql, params);
+                };
+                this.db.get = async (sql, params) => {
+                    return originalGet(sql, params);
+                };
             }
             // When mockDb is provided, this.db is already set in constructor and doesn't need promisification
             // Create document_tree table
@@ -227,7 +236,7 @@ export class DocumentTreeService {
             return row ? this.mapRowToNode(row) : null;
         }
         catch (error) {
-            this.logger.error('Failed to get node by ID:', error);
+            this.logger.error('Failed to get node by ID:', getErrorMessage(error));
             return null;
         }
     }
@@ -239,7 +248,7 @@ export class DocumentTreeService {
             return row ? row.depth : 0;
         }
         catch (error) {
-            this.logger.error('Failed to get node depth:', error);
+            this.logger.error('Failed to get node depth:', getErrorMessage(error));
             return 0;
         }
     }
@@ -251,7 +260,7 @@ export class DocumentTreeService {
             return row ? row.count : 0;
         }
         catch (error) {
-            this.logger.error('Failed to get children count:', error);
+            this.logger.error('Failed to get children count:', getErrorMessage(error));
             return 0;
         }
     }
@@ -268,7 +277,7 @@ export class DocumentTreeService {
             }
         }
         catch (error) {
-            this.logger.error('Failed to update parent children:', error);
+            this.logger.error('Failed to update parent children:', getErrorMessage(error));
         }
     }
     async removeFromParentChildren(parentId, childId) {
@@ -284,7 +293,7 @@ export class DocumentTreeService {
             }
         }
         catch (error) {
-            this.logger.error('Failed to remove from parent children:', error);
+            this.logger.error('Failed to remove from parent children:', getErrorMessage(error));
         }
     }
     mapRowToNode(row) {

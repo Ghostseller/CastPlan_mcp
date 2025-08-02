@@ -1,7 +1,7 @@
-import { DocumentInfo, ChangeRecord, DocumentationRequest, DocumentationResponse } from '../types/documentation.types.js';
-import { ISyncFileSystem, IPathUtils } from '../interfaces/FileSystemAdapter.js';
-import { I18nService } from './I18nService.js';
-import { LocalizationConfig } from '../types/index.js';
+import { DocumentInfo, ChangeRecord, DocumentationRequest, DocumentationResponse } from '../types/documentation.types.ts';
+import { ISyncFileSystem, IPathUtils } from '../interfaces/FileSystemAdapter.ts';
+import { I18nService } from './I18nService.ts';
+import { LocalizationConfig } from '../types/index.ts';
 export declare class DocumentationService {
     private projectRoot;
     private docsRoot;
@@ -11,6 +11,7 @@ export declare class DocumentationService {
     private fs;
     private path;
     private i18nService;
+    private historyMutex;
     private readonly DOC_CATEGORIES;
     private readonly WORK_TYPE_DOCS;
     constructor(projectRoot: string, fs?: ISyncFileSystem, path?: IPathUtils, localizationConfig?: LocalizationConfig);

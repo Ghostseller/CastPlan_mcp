@@ -24,6 +24,7 @@ declare class CastPlanUltimateAutomationServer {
     private treeService?;
     private aiService?;
     private i18nService?;
+    private cacheService?;
     private tools;
     private toolDefinitions;
     private errorRecovery?;

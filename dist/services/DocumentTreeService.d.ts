@@ -1,5 +1,5 @@
 import { Logger } from 'winston';
-import { DocumentTreeService as IDocumentTreeService, DocumentNode, DocumentMetadata } from '../types/enhanced.types.js';
+import { DocumentTreeService as IDocumentTreeService, DocumentNode, DocumentMetadata } from '../types/enhanced.types.ts';
 /**
  * Document Tree Structure Service
  *
@@ -12,6 +12,7 @@ export declare class DocumentTreeService implements IDocumentTreeService {
     private db;
     private dbPath;
     private logger;
+    private dbMutex;
     constructor(databasePath: string, logger: Logger, mockDb?: any);
     initialize(): Promise<void>;
     buildTree(documents: DocumentMetadata[]): Promise<DocumentNode[]>;

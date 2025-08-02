@@ -1,20 +1,34 @@
 import fs from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid';
+import { Mutex } from 'async-mutex';
+import { getErrorMessage } from '../utils/typeHelpers.ts';
 /**
  * AI Analysis Service
  *
  * Provides intelligent document analysis using various AI providers.
- * Supports quality assessment, duplicate detection, and relevance scoring.
+ * Supports quality assessment, duplicate detection, relevance scoring,
+ * embedding generation, semantic similarity calculations, and AI-powered quality assessment.
+ *
+ * Phase 1 Week 4 Enhancement - AI Integration & Testing
+ * Phase 2.2 Enhancement - Redis Cache Integration
  *
  * Created: 2025-07-29
+ * Enhanced: 2025-07-31 - Added embeddings and semantic analysis capabilities
+ * Enhanced: 2025-07-31 - Migrated embedding cache to Redis for distributed caching
  */
 export class AIAnalysisService {
     aiProvider;
     logger;
-    aiClient; // Will be initialized based on provider
-    constructor(aiProvider, logger, openAIClient, OpenAIClass) {
+    aiClient; // Will be initialized based on provider (OpenAI client or similar)
+    cacheService;
+    CACHE_TTL = 60 * 60; // 1 hour in seconds (Redis TTL format)
+    CACHE_NAMESPACE = 'ai_embeddings';
+    // Thread safety mutex for non-Redis operations
+    operationMutex = new Mutex();
+    constructor(aiProvider, logger, cacheService, openAIClient, OpenAIClass) {
         this.aiProvider = aiProvider;
         this.logger = logger;
+        this.cacheService = cacheService;
         if (openAIClient) {
             this.aiClient = openAIClient;
         }
@@ -24,6 +38,7 @@ export class AIAnalysisService {
     }
     /**
      * Initialize AI client based on provider
+     * @param OpenAIClass - Optional OpenAI constructor class for dependency injection
      */
     initializeAIClient(OpenAIClass) {
         try {
@@ -68,15 +83,24 @@ export class AIAnalysisService {
             }
         }
         catch (error) {
-            this.logger.error('Failed to initialize AI client:', error);
+            this.logger.error('Failed to initialize AI client:', getErrorMessage(error));
         }
     }
     /**
      * Analyze document quality using AI
+     * @param documentPath - Path to document to analyze
+     * @returns Promise resolving to AI analysis result
+     * @throws Error if document cannot be read or analyzed
      */
     async analyzeQuality(documentPath) {
+        if (!documentPath?.trim()) {
+            throw new Error('Document path is required for quality analysis');
+        }
         try {
             const content = await this.readDocumentContent(documentPath);
+            if (!content?.trim()) {
+                throw new Error(`Document at ${documentPath} is empty or contains no readable content`);
+            }
             let analysis;
             if (this.aiClient && this.aiProvider === 'openai') {
                 analysis = await this.analyzeQualityWithOpenAI(documentPath, content);
@@ -88,9 +112,10 @@ export class AIAnalysisService {
             return analysis;
         }
         catch (error) {
-            this.logger.error('Failed to analyze document quality:', error);
-            // Return fallback analysis
-            return this.createFallbackAnalysis(documentPath, 'quality', error instanceof Error ? error.message : String(error));
+            const errorMsg = `Failed to analyze document quality for '${documentPath}': ${getErrorMessage(error)}`;
+            this.logger.error(errorMsg);
+            // Return fallback analysis with detailed error context
+            return this.createFallbackAnalysis(documentPath, 'quality', errorMsg);
         }
     }
     /**
@@ -110,8 +135,8 @@ export class AIAnalysisService {
             return analysis;
         }
         catch (error) {
-            this.logger.error('Failed to detect duplicates:', error);
-            return this.createFallbackAnalysis(documentPath, 'duplicate', error instanceof Error ? error.message : String(error));
+            this.logger.error('Failed to detect duplicates:', getErrorMessage(error));
+            return this.createFallbackAnalysis(documentPath, 'duplicate', getErrorMessage(error));
         }
     }
     /**
@@ -131,8 +156,8 @@ export class AIAnalysisService {
             return analysis;
         }
         catch (error) {
-            this.logger.error('Failed to calculate relevance:', error);
-            return this.createFallbackAnalysis(documentPath, 'relevance', error instanceof Error ? error.message : String(error));
+            this.logger.error('Failed to calculate relevance:', getErrorMessage(error));
+            return this.createFallbackAnalysis(documentPath, 'relevance', getErrorMessage(error));
         }
     }
     /**
@@ -149,8 +174,190 @@ export class AIAnalysisService {
             }
         }
         catch (error) {
-            this.logger.error('Failed to generate insights:', error);
-            return ['Error generating insights: ' + (error instanceof Error ? error.message : String(error))];
+            this.logger.error('Failed to generate insights:', getErrorMessage(error));
+            return ['Error generating insights: ' + getErrorMessage(error)];
+        }
+    }
+    /**
+     * Generate embeddings for content using OpenAI API with Redis caching
+     */
+    async generateEmbeddings(content, model = 'text-embedding-ada-002') {
+        try {
+            const cacheKey = `${model}:${this.generateContentHash(content)}`;
+            // Check Redis cache first
+            const cachedEmbedding = await this.cacheService.get(cacheKey);
+            if (cachedEmbedding) {
+                this.logger.debug('Using cached embedding from Redis');
+                return cachedEmbedding;
+            }
+            if (!this.aiClient || this.aiProvider !== 'openai') {
+                this.logger.warn('OpenAI client not available, generating random embedding');
+                return this.generateRandomEmbedding(1536); // Default dimension for text-embedding-ada-002
+            }
+            const response = await this.aiClient.embeddings.create({
+                model,
+                input: content.substring(0, 8000), // Limit input size to avoid API limits
+                encoding_format: 'float'
+            });
+            if (!response.data || response.data.length === 0) {
+                throw new Error('No embedding data received from OpenAI');
+            }
+            const embedding = response.data[0]?.embedding;
+            if (!embedding) {
+                throw new Error('No embedding data received from OpenAI');
+            }
+            // Store in Redis cache with TTL
+            await this.cacheService.set(cacheKey, embedding, {
+                ttl: this.CACHE_TTL,
+                namespace: this.CACHE_NAMESPACE,
+                tags: ['embeddings', model],
+                compress: true // Enable compression for large embedding vectors
+            });
+            this.logger.info(`Generated embedding with ${embedding.length} dimensions`);
+            return embedding;
+        }
+        catch (error) {
+            this.logger.error('Failed to generate embeddings:', getErrorMessage(error));
+            // Return random embedding as fallback
+            return this.generateRandomEmbedding(1536);
+        }
+    }
+    /**
+     * Calculate semantic similarity between two pieces of content
+     */
+    async calculateSemanticSimilarity(content1, content2) {
+        try {
+            const [embedding1, embedding2] = await Promise.all([
+                this.generateEmbeddings(content1),
+                this.generateEmbeddings(content2)
+            ]);
+            return this.calculateCosineSimilarity(embedding1, embedding2);
+        }
+        catch (error) {
+            this.logger.error('Failed to calculate semantic similarity:', getErrorMessage(error));
+            return 0.0;
+        }
+    }
+    /**
+     * Calculate cosine similarity between two vectors
+     */
+    calculateCosineSimilarity(vec1, vec2) {
+        if (vec1.length !== vec2.length) {
+            throw new Error('Vectors must have the same length');
+        }
+        let dotProduct = 0;
+        let norm1 = 0;
+        let norm2 = 0;
+        for (let i = 0; i < vec1.length; i++) {
+            dotProduct += vec1[i] * vec2[i];
+            norm1 += vec1[i] * vec1[i];
+            norm2 += vec2[i] * vec2[i];
+        }
+        norm1 = Math.sqrt(norm1);
+        norm2 = Math.sqrt(norm2);
+        if (norm1 === 0 || norm2 === 0) {
+            return 0;
+        }
+        return dotProduct / (norm1 * norm2);
+    }
+    /**
+     * Find semantically similar content chunks
+     */
+    async findSimilarChunks(queryContent, chunkContents, threshold = 0.7) {
+        try {
+            const queryEmbedding = await this.generateEmbeddings(queryContent);
+            const results = [];
+            // Generate embeddings for all chunks in parallel (in batches to avoid rate limits)
+            const batchSize = 5;
+            for (let i = 0; i < chunkContents.length; i += batchSize) {
+                const batch = chunkContents.slice(i, i + batchSize);
+                const batchEmbeddings = await Promise.all(batch.map(content => this.generateEmbeddings(content)));
+                for (let j = 0; j < batchEmbeddings.length; j++) {
+                    const chunkIndex = i + j;
+                    const similarity = this.calculateCosineSimilarity(queryEmbedding, batchEmbeddings[j]);
+                    if (similarity >= threshold) {
+                        results.push({
+                            index: chunkIndex,
+                            similarity,
+                            content: chunkContents[chunkIndex]
+                        });
+                    }
+                }
+                // Add small delay between batches to respect rate limits
+                if (i + batchSize < chunkContents.length) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+            }
+            // Sort by similarity score (highest first)
+            return results.sort((a, b) => b.similarity - a.similarity);
+        }
+        catch (error) {
+            this.logger.error('Failed to find similar chunks:', getErrorMessage(error));
+            return [];
+        }
+    }
+    /**
+     * AI-powered quality assessment for chunks
+     */
+    async assessChunkQuality(content, context) {
+        try {
+            if (this.aiClient && this.aiProvider === 'openai') {
+                return await this.assessChunkQualityWithOpenAI(content, context);
+            }
+            else {
+                return await this.assessChunkQualityLocally(content, context);
+            }
+        }
+        catch (error) {
+            this.logger.error('Failed to assess chunk quality:', getErrorMessage(error));
+            return {
+                qualityScore: 0.5,
+                qualityMetrics: { error: 1 },
+                suggestions: ['Quality assessment failed: ' + getErrorMessage(error)],
+                confidence: 0.1
+            };
+        }
+    }
+    /**
+     * Detect topics in content using AI analysis
+     */
+    async detectTopics(content, maxTopics = 5) {
+        try {
+            if (this.aiClient && this.aiProvider === 'openai') {
+                return await this.detectTopicsWithOpenAI(content, maxTopics);
+            }
+            else {
+                return await this.detectTopicsLocally(content, maxTopics);
+            }
+        }
+        catch (error) {
+            this.logger.error('Failed to detect topics:', getErrorMessage(error));
+            return [];
+        }
+    }
+    /**
+     * Analyze relationships between chunks
+     */
+    async analyzeChunkRelationships(sourceContent, targetContents) {
+        try {
+            const relationships = [];
+            // Calculate semantic similarity first
+            const similarChunks = await this.findSimilarChunks(sourceContent, targetContents, 0.3);
+            for (const similar of similarChunks) {
+                // Determine relationship type based on similarity and content analysis
+                const relationshipType = await this.determineRelationshipType(sourceContent, similar.content);
+                relationships.push({
+                    targetIndex: similar.index,
+                    relationshipType,
+                    strength: similar.similarity,
+                    confidence: similar.similarity * 0.8 // Slightly lower confidence than similarity
+                });
+            }
+            return relationships;
+        }
+        catch (error) {
+            this.logger.error('Failed to analyze chunk relationships:', getErrorMessage(error));
+            return [];
         }
     }
     // =============================================================================
@@ -176,7 +383,7 @@ Format your response as JSON with fields: score, insights, suggestions, confiden
                 max_tokens: 1000,
                 temperature: 0.3
             });
-            const aiResponse = response.choices[0]?.message?.content;
+            const aiResponse = response.choices?.[0]?.message?.content;
             if (!aiResponse) {
                 throw new Error('No response from OpenAI');
             }
@@ -193,7 +400,7 @@ Format your response as JSON with fields: score, insights, suggestions, confiden
             };
         }
         catch (error) {
-            this.logger.error('OpenAI analysis failed:', error);
+            this.logger.error('OpenAI analysis failed:', getErrorMessage(error));
             return this.analyzeQualityLocally(documentPath, content);
         }
     }
@@ -266,7 +473,7 @@ Format as JSON with fields: score, insights, suggestions, confidence`;
                 max_tokens: 800,
                 temperature: 0.3
             });
-            const aiResponse = response.choices[0]?.message?.content;
+            const aiResponse = response.choices?.[0]?.message?.content;
             if (!aiResponse) {
                 throw new Error('No response from OpenAI');
             }
@@ -282,7 +489,7 @@ Format as JSON with fields: score, insights, suggestions, confidence`;
             };
         }
         catch (error) {
-            this.logger.error('OpenAI relevance analysis failed:', error);
+            this.logger.error('OpenAI relevance analysis failed:', getErrorMessage(error));
             return this.calculateRelevanceLocally(documentPath, content, workContext);
         }
     }
@@ -339,7 +546,7 @@ Format your response as JSON with fields: score, insights, suggestions, confiden
                 max_tokens: 800,
                 temperature: 0.3
             });
-            const aiResponse = response.choices[0]?.message?.content;
+            const aiResponse = response.choices?.[0]?.message?.content;
             if (!aiResponse) {
                 throw new Error('No response from OpenAI');
             }
@@ -355,7 +562,7 @@ Format your response as JSON with fields: score, insights, suggestions, confiden
             };
         }
         catch (error) {
-            this.logger.error('OpenAI duplicate analysis failed:', error);
+            this.logger.error('OpenAI duplicate analysis failed:', getErrorMessage(error));
             return this.detectDuplicatesLocally(documentPath, content);
         }
     }
@@ -446,7 +653,7 @@ Format your response as JSON with an 'insights' array of strings.`;
                 max_tokens: 1000,
                 temperature: 0.3
             });
-            const aiResponse = response.choices[0]?.message?.content;
+            const aiResponse = response.choices?.[0]?.message?.content;
             if (!aiResponse) {
                 throw new Error('No response from OpenAI');
             }
@@ -454,7 +661,7 @@ Format your response as JSON with an 'insights' array of strings.`;
             return Array.isArray(parsed.insights) ? parsed.insights : [parsed.insights || 'No insights provided'];
         }
         catch (error) {
-            this.logger.error('OpenAI insights failed:', error);
+            this.logger.error('OpenAI insights failed:', getErrorMessage(error));
             return this.generateInsightsLocally(documentPath, content);
         }
     }
@@ -493,8 +700,8 @@ Format your response as JSON with an 'insights' array of strings.`;
             return content;
         }
         catch (error) {
-            this.logger.error(`Failed to read document ${documentPath}:`, error);
-            throw new Error(`Cannot read document: ${error instanceof Error ? error.message : String(error)}`);
+            this.logger.error(`Failed to read document ${documentPath}:`, getErrorMessage(error));
+            throw new Error(`Cannot read document: ${getErrorMessage(error)}`);
         }
     }
     createFallbackAnalysis(documentPath, analysisType, errorMessage) {
@@ -507,6 +714,294 @@ Format your response as JSON with an 'insights' array of strings.`;
             confidence: 0.1,
             analyzedAt: new Date().toISOString()
         };
+    }
+    // =============================================================================
+    // PRIVATE AI ENHANCEMENT METHODS
+    // =============================================================================
+    /**
+     * Generate random embedding vector for fallback
+     */
+    generateRandomEmbedding(dimension) {
+        return new Array(dimension).fill(0).map(() => Math.random() * 2 - 1); // Random values between -1 and 1
+    }
+    /**
+     * Clear embedding cache (Redis-based)
+     */
+    async clearEmbeddingCache() {
+        try {
+            const result = await this.cacheService.flush(this.CACHE_NAMESPACE);
+            this.logger.info('Embedding cache cleared from Redis');
+            return result;
+        }
+        catch (error) {
+            this.logger.error('Failed to clear embedding cache:', getErrorMessage(error));
+            return false;
+        }
+    }
+    /**
+     * Generate content hash for caching
+     */
+    generateContentHash(content) {
+        let hash = 0;
+        for (let i = 0; i < content.length; i++) {
+            const char = content.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash;
+        }
+        return Math.abs(hash).toString(36);
+    }
+    /**
+     * AI-powered chunk quality assessment with OpenAI
+     */
+    async assessChunkQualityWithOpenAI(content, context) {
+        try {
+            const contextStr = context ? `\nDocument Type: ${context.documentType || 'Unknown'}\nExpected Topics: ${context.expectedTopics?.join(', ') || 'None specified'}` : '';
+            const prompt = `Analyze the quality of this content chunk and provide a detailed assessment:${contextStr}
+
+Content: ${content.substring(0, 3000)}...
+
+Provide analysis in JSON format with:
+1. qualityScore (0-1): Overall quality assessment
+2. qualityMetrics: Object with specific metric scores (0-1) for:
+   - clarity: How clear and understandable the content is
+   - completeness: How complete the information appears
+   - relevance: How relevant to the topic/context
+   - coherence: How well the content flows and makes sense
+   - technical_accuracy: Technical correctness (if applicable)
+3. suggestions: Array of specific improvement recommendations
+4. confidence: Your confidence in this assessment (0-1)
+
+Format as valid JSON only.`;
+            const response = await this.aiClient.chat.completions.create({
+                model: 'gpt-3.5-turbo',
+                messages: [{ role: 'user', content: prompt }],
+                max_tokens: 1200,
+                temperature: 0.2
+            });
+            const aiResponse = response.choices?.[0]?.message?.content;
+            if (!aiResponse) {
+                throw new Error('No response from OpenAI');
+            }
+            const parsed = JSON.parse(aiResponse);
+            return {
+                qualityScore: Math.max(0, Math.min(1, parsed.qualityScore || 0.5)),
+                qualityMetrics: parsed.qualityMetrics || {},
+                suggestions: Array.isArray(parsed.suggestions) ? parsed.suggestions : [parsed.suggestions || 'No suggestions provided'],
+                confidence: Math.max(0, Math.min(1, parsed.confidence || 0.7))
+            };
+        }
+        catch (error) {
+            this.logger.error('OpenAI quality assessment failed:', getErrorMessage(error));
+            return this.assessChunkQualityLocally(content, context);
+        }
+    }
+    /**
+     * Local chunk quality assessment
+     */
+    async assessChunkQualityLocally(content, context) {
+        const metrics = {};
+        const suggestions = [];
+        // Basic quality metrics
+        const wordCount = content.split(/\s+/).length;
+        const sentenceCount = content.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+        const avgWordsPerSentence = wordCount / Math.max(sentenceCount, 1);
+        // Clarity metric (based on sentence structure)
+        metrics.clarity = Math.min(1, Math.max(0, 1 - (avgWordsPerSentence - 15) / 20));
+        if (avgWordsPerSentence > 25) {
+            suggestions.push('Consider breaking down long sentences for better clarity');
+        }
+        // Completeness metric (based on content length and structure)
+        metrics.completeness = Math.min(1, wordCount / 100); // Assume 100 words as baseline
+        if (wordCount < 50) {
+            suggestions.push('Content appears brief, consider adding more detail');
+        }
+        // Coherence metric (basic text analysis)
+        const hasGoodStructure = /^[A-Z]/.test(content.trim()) && content.includes('.');
+        metrics.coherence = hasGoodStructure ? 0.7 : 0.4;
+        if (!hasGoodStructure) {
+            suggestions.push('Improve text structure with proper capitalization and punctuation');
+        }
+        // Relevance (keyword matching if context provided)
+        if (context?.expectedTopics && context.expectedTopics.length > 0) {
+            const contentLower = content.toLowerCase();
+            const matchingTopics = context.expectedTopics.filter(topic => contentLower.includes(topic.toLowerCase()));
+            metrics.relevance = matchingTopics.length / context.expectedTopics.length;
+        }
+        else {
+            metrics.relevance = 0.6; // Neutral score without context
+        }
+        // Technical accuracy (placeholder)
+        metrics.technical_accuracy = 0.6; // Default neutral score
+        // Calculate overall quality score
+        const qualityScore = Object.values(metrics).reduce((sum, val) => sum + val, 0) / Object.keys(metrics).length;
+        return {
+            qualityScore,
+            qualityMetrics: metrics,
+            suggestions,
+            confidence: 0.6 // Lower confidence for local analysis
+        };
+    }
+    /**
+     * Detect topics with OpenAI
+     */
+    async detectTopicsWithOpenAI(content, maxTopics) {
+        try {
+            const prompt = `Analyze this content and identify the main topics discussed. Extract up to ${maxTopics} topics.
+
+Content: ${content.substring(0, 4000)}...
+
+Provide response as JSON array with format:
+[{
+  "topic": "Topic name",
+  "confidence": 0.85,
+  "keywords": ["keyword1", "keyword2", "keyword3"]
+}]
+
+Only return valid JSON array.`;
+            const response = await this.aiClient.chat.completions.create({
+                model: 'gpt-3.5-turbo',
+                messages: [{ role: 'user', content: prompt }],
+                max_tokens: 800,
+                temperature: 0.3
+            });
+            const aiResponse = response.choices?.[0]?.message?.content;
+            if (!aiResponse) {
+                throw new Error('No response from OpenAI');
+            }
+            const topics = JSON.parse(aiResponse);
+            return Array.isArray(topics) ? topics.slice(0, maxTopics) : [];
+        }
+        catch (error) {
+            this.logger.error('OpenAI topic detection failed:', getErrorMessage(error));
+            return this.detectTopicsLocally(content, maxTopics);
+        }
+    }
+    /**
+     * Detect topics locally using keyword analysis
+     */
+    async detectTopicsLocally(content, maxTopics) {
+        const topics = [];
+        // Simple keyword-based topic detection
+        const words = content.toLowerCase()
+            .replace(/[^a-z\s]/g, ' ')
+            .split(/\s+/)
+            .filter(word => word.length > 3);
+        const wordFreq = new Map();
+        words.forEach(word => {
+            wordFreq.set(word, (wordFreq.get(word) || 0) + 1);
+        });
+        // Get most frequent words as topics
+        const sortedWords = Array.from(wordFreq.entries())
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, maxTopics);
+        for (const [word, frequency] of sortedWords) {
+            const confidence = Math.min(1, frequency / words.length * 10);
+            if (confidence > 0.1) {
+                topics.push({
+                    topic: word,
+                    confidence,
+                    keywords: [word]
+                });
+            }
+        }
+        return topics;
+    }
+    /**
+     * Determine relationship type between two content pieces
+     */
+    async determineRelationshipType(sourceContent, targetContent) {
+        // Simple heuristic-based relationship detection
+        const sourceLower = sourceContent.toLowerCase();
+        const targetLower = targetContent.toLowerCase();
+        // Check for explicit references
+        if (targetLower.includes('see ') || targetLower.includes('refer to') || targetLower.includes('as mentioned')) {
+            return 'reference';
+        }
+        // Check for examples
+        if (targetLower.includes('for example') || targetLower.includes('such as') || targetLower.includes('e.g.')) {
+            return 'example';
+        }
+        // Check for elaboration
+        if (targetLower.includes('furthermore') || targetLower.includes('additionally') || targetLower.includes('moreover')) {
+            return 'elaboration';
+        }
+        // Check for contradiction
+        if (targetLower.includes('however') || targetLower.includes('but') || targetLower.includes('contrary')) {
+            return 'contradiction';
+        }
+        // Check for summary patterns
+        if (targetLower.includes('in summary') || targetLower.includes('to conclude') || targetLower.includes('overall')) {
+            return 'summary';
+        }
+        // Default to semantic similarity
+        return 'semantic_similarity';
+    }
+    /**
+     * Get cache statistics from Redis
+     */
+    async getCacheStatistics() {
+        try {
+            const metrics = this.cacheService.getMetrics();
+            return {
+                keyCount: metrics.keyCount,
+                memoryUsage: metrics.memoryUsage,
+                hitRate: metrics.hitRate,
+                totalOperations: metrics.totalOperations
+            };
+        }
+        catch (error) {
+            this.logger.error('Failed to get cache statistics:', getErrorMessage(error));
+            return {
+                keyCount: 0,
+                memoryUsage: 0,
+                hitRate: 0,
+                totalOperations: 0
+            };
+        }
+    }
+    /**
+     * Invalidate embeddings cache by model or content pattern
+     */
+    async invalidateEmbeddings(pattern) {
+        try {
+            if (pattern) {
+                return await this.cacheService.invalidateByPattern(`${this.CACHE_NAMESPACE}:*${pattern}*`);
+            }
+            else {
+                // Invalidate by tag
+                return await this.cacheService.invalidateByTag('embeddings');
+            }
+        }
+        catch (error) {
+            this.logger.error('Failed to invalidate embeddings cache:', getErrorMessage(error));
+            return 0;
+        }
+    }
+    /**
+     * Health check for cache service
+     */
+    async isCacheHealthy() {
+        try {
+            const testKey = `health_check_${Date.now()}`;
+            const testValue = [1, 2, 3, 4, 5];
+            // Test set and get operations
+            const setResult = await this.cacheService.set(testKey, testValue, {
+                ttl: 10, // 10 seconds
+                namespace: this.CACHE_NAMESPACE
+            });
+            if (!setResult) {
+                return false;
+            }
+            const getValue = await this.cacheService.get(testKey);
+            const isHealthy = getValue !== null && JSON.stringify(getValue) === JSON.stringify(testValue);
+            // Clean up test key
+            await this.cacheService.delete(testKey, this.CACHE_NAMESPACE);
+            return isHealthy;
+        }
+        catch (error) {
+            this.logger.error('Cache health check failed:', getErrorMessage(error));
+            return false;
+        }
     }
 }
 //# sourceMappingURL=AIAnalysisService.js.map

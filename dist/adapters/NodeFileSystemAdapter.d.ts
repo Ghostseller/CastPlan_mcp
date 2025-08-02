@@ -1,5 +1,5 @@
 import { Stats } from 'fs';
-import { IAsyncFileSystem, ISyncFileSystem, IPathUtils } from '../interfaces/FileSystemAdapter.js';
+import { IAsyncFileSystem, ISyncFileSystem, IPathUtils } from '../interfaces/FileSystemAdapter.ts';
 /**
  * Node.js async file system adapter
  * Wraps fs/promises for async operations

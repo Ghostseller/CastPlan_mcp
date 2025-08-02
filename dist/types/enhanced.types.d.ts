@@ -1,5 +1,5 @@
 import { z } from 'zod';
-export type { LocalizationConfig } from './index.js';
+export type { LocalizationConfig } from './index.ts';
 /**
  * Core types for document lifecycle tracking and AI integration
  * Created: 2025-07-29
@@ -276,8 +276,8 @@ export interface DateTimeService {
     formatDate(date: string, format: 'iso' | 'localized' | 'short'): string;
     getCurrentLocalizedDate(): string;
     isValidDateTime(dateString: string): boolean;
-    setLocalizationConfig(config: import('./index.js').LocalizationConfig): void;
-    getLocalizationConfig(): import('./index.js').LocalizationConfig;
+    setLocalizationConfig(config: import('./index.ts').LocalizationConfig): void;
+    getLocalizationConfig(): import('./index.ts').LocalizationConfig;
 }
 export interface DocumentLifecycleService {
     trackDocument(metadata: Omit<DocumentMetadata, 'id' | 'createdAt' | 'updatedAt'>): Promise<DocumentMetadata>;
@@ -310,7 +310,7 @@ export interface EnhancedDocAutomationConfig {
     databasePath: string;
     enableAI: boolean;
     aiProvider: 'openai' | 'anthropic' | 'local';
-    localization?: import('./index.js').LocalizationConfig;
+    localization?: import('./index.ts').LocalizationConfig;
     watchMode: boolean;
     logLevel: 'debug' | 'info' | 'warn' | 'error';
 }

@@ -1,6 +1,6 @@
 import { Logger } from 'winston';
-import { DateTimeService as IDateTimeService, LocalizationConfig } from '../types/enhanced.types.js';
-import { I18nService } from './I18nService.js';
+import { DateTimeService as IDateTimeService, LocalizationConfig } from '../types/enhanced.types.ts';
+import { I18nService } from './I18nService.ts';
 /**
  * Enhanced DateTime Service for CastPlan Documentation Automation
  *
@@ -22,20 +22,35 @@ export declare class DateTimeService implements IDateTimeService {
     /**
      * Format date with flexible format support
      * Supports both legacy format strings and localization
+     * @param date - ISO date string or Date object to format
+     * @param format - Output format type
+     * @returns Formatted date string
+     * @throws Error if date is invalid and strict mode is enabled
      */
-    formatDate(date: string, format?: 'iso' | 'localized' | 'short'): string;
+    formatDate(date: string | Date, format?: 'iso' | 'localized' | 'short'): string;
     private formatWithTimezone;
     /**
      * Parse date string with flexible format support
+     * @param dateString - String representation of date to parse
+     * @param format - Expected format pattern (optional)
+     * @returns Parsed Date object or null if parsing fails
      */
     parseDate(dateString: string, format?: string): Date | null;
     private getTimezoneOffset;
     /**
      * Add days to a date
+     * @param date - Base date
+     * @param days - Number of days to add (can be negative)
+     * @returns New Date object with days added
+     * @throws Error if date is invalid
      */
     addDays(date: Date, days: number): Date;
     /**
      * Calculate days between two dates
+     * @param startDate - Start date
+     * @param endDate - End date
+     * @returns Number of days between dates (negative if endDate is before startDate)
+     * @throws Error if either date is invalid
      */
     getDaysBetween(startDate: Date, endDate: Date): number;
     /**

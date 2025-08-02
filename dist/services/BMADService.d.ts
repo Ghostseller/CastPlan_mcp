@@ -1,10 +1,17 @@
-import { Task, Agent, Assignment, ParseSpecRequest, ParseSpecResponse } from '../types/bmad.types.js';
+import { Task, Agent, Assignment, ParseSpecRequest, ParseSpecResponse } from '../types/bmad.types.ts';
 export declare class BMADService {
     private agents;
     private tasks;
     private assignments;
+    private stateMutex;
     constructor();
     private initializeDefaultAgents;
+    /**
+     * Parse specification document with comprehensive error handling
+     * @param request - Parse specification request with content and options
+     * @returns Promise resolving to parsed specification response
+     * @throws Error with detailed context if parsing fails
+     */
     parseSpecification(request: ParseSpecRequest): Promise<ParseSpecResponse>;
     private parseMarkdown;
     private parseYAML;

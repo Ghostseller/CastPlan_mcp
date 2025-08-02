@@ -1,5 +1,5 @@
 import { Logger } from 'winston';
-import { WorkDocumentConnectionService as IWorkDocumentConnectionService, WorkDocumentConnection } from '../types/enhanced.types.js';
+import { WorkDocumentConnectionService as IWorkDocumentConnectionService, WorkDocumentConnection } from '../types/enhanced.types.ts';
 /**
  * Work-Document Connection Service
  *
@@ -12,6 +12,7 @@ export declare class WorkDocumentConnectionService implements IWorkDocumentConne
     private db;
     private dbPath;
     private logger;
+    private dbMutex;
     constructor(databasePath: string, logger: Logger);
     initialize(): Promise<void>;
     private ensureInitialized;

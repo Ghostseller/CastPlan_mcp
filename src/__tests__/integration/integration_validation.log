@@ -1,0 +1,1010 @@
+info: Integration validation tables initialized successfully {"timestamp":"2025-08-01T14:53:07.095Z"}
+info: Performance monitoring tables initialized successfully {"timestamp":"2025-08-01T14:53:07.097Z"}
+info: Performance monitoring started with interval: 30000ms {"timestamp":"2025-08-01T14:53:07.097Z"}
+info: Performance benchmarking tables initialized successfully {"timestamp":"2025-08-01T14:53:07.097Z"}
+debug: Created database connection: conn_1754059987097_uv67j8k2w {"timestamp":"2025-08-01T14:53:07.097Z"}
+debug: Created database connection: conn_1754059987097_fq9m1olry {"timestamp":"2025-08-01T14:53:07.097Z"}
+info: Found 1 tables to analyze {"timestamp":"2025-08-01T14:53:07.097Z"}
+info: Database analysis completed {"timestamp":"2025-08-01T14:53:07.097Z"}
+info: Database optimization service initialized with 2 connections {"timestamp":"2025-08-01T14:53:07.097Z"}
+debug: Created database connection: conn_1754059987098_nqkze1qpz {"timestamp":"2025-08-01T14:53:07.098Z"}
+debug: Created database connection: conn_1754059987098_j3pmp5jmj {"timestamp":"2025-08-01T14:53:07.098Z"}
+info: Found 1 tables to analyze {"timestamp":"2025-08-01T14:53:07.098Z"}
+info: Database analysis completed {"timestamp":"2025-08-01T14:53:07.098Z"}
+info: Database optimization service initialized with 2 connections {"timestamp":"2025-08-01T14:53:07.098Z"}
+info: Performance monitoring tables initialized successfully {"timestamp":"2025-08-01T14:53:07.098Z"}
+info: Performance monitoring started with interval: 30000ms {"timestamp":"2025-08-01T14:53:07.098Z"}
+info: Performance benchmarking tables initialized successfully {"timestamp":"2025-08-01T14:53:07.098Z"}
+info: Starting benchmark: version_creation_baseline {"timestamp":"2025-08-01T14:53:07.098Z"}
+info: Running 2 warmup iterations {"timestamp":"2025-08-01T14:53:07.098Z"}
+info: Benchmark completed: version_creation_baseline - 98.28ms avg {"timestamp":"2025-08-01T14:53:08.354Z"}
+info: Baseline established for benchmark: version_creation_baseline {"timestamp":"2025-08-01T14:53:08.354Z"}
+info: Established baseline for version_creation_baseline: 98.28ms avg {"timestamp":"2025-08-01T14:53:08.354Z"}
+info: Starting benchmark: version_comparison_baseline {"timestamp":"2025-08-01T14:53:08.354Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:53:08.354Z"}
+info: Benchmark completed: version_comparison_baseline - 90.95ms avg {"timestamp":"2025-08-01T14:53:08.884Z"}
+info: Baseline established for benchmark: version_comparison_baseline {"timestamp":"2025-08-01T14:53:08.884Z"}
+info: Established baseline for version_comparison_baseline: 90.95ms avg {"timestamp":"2025-08-01T14:53:08.884Z"}
+info: Performance Enhanced Document Version Service initialized in 1786.70ms {"timestamp":"2025-08-01T14:53:08.884Z"}
+info: All integration test services initialized {"timestamp":"2025-08-01T14:53:08.884Z"}
+info: Integration Validation Service initialized successfully {"timestamp":"2025-08-01T14:53:08.884Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:53:08.885Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:53:08.885Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:53:08.885Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:53:08.886Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:53:08.886Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:53:08.886Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:53:08.886Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:53:08.886Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:53:08.886Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:53:08.887Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:53:08.887Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:53:08.887Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:53:08.887Z"}
+info: Benchmark completed: integration_test_benchmark - 63.35ms avg {"timestamp":"2025-08-01T14:53:09.276Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:53:09.276Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:53:09.277Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:53:09.277Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:53:09.277Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:53:09.277Z"}
+info: Integration validation completed in 393ms {"timestamp":"2025-08-01T14:53:09.278Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-01T14:53:09.278Z"}
+info: === INTEGRATION VALIDATION RESULTS === {"timestamp":"2025-08-01T14:53:09.280Z"}
+info: Total Tests: 11 {"timestamp":"2025-08-01T14:53:09.280Z"}
+info: Passed: 7 {"timestamp":"2025-08-01T14:53:09.280Z"}
+info: Failed: 3 {"timestamp":"2025-08-01T14:53:09.280Z"}
+info: Warnings: 1 {"timestamp":"2025-08-01T14:53:09.280Z"}
+info: Success Rate: 63.6% {"timestamp":"2025-08-01T14:53:09.280Z"}
+info: Duration: 393ms {"timestamp":"2025-08-01T14:53:09.280Z"}
+info: Average Response Time: 35.73ms {"timestamp":"2025-08-01T14:53:09.280Z"}
+warn: Critical Issues Found: {"timestamp":"2025-08-01T14:53:09.280Z"}
+warn:   1. analytics.initialization: Analytics service initialization failed {"timestamp":"2025-08-01T14:53:09.280Z"}
+warn:   2. dashboard.creation: Dashboard creation failed {"timestamp":"2025-08-01T14:53:09.280Z"}
+warn:   3. integration.cross_service_data_flow: Cross-service data flow failed {"timestamp":"2025-08-01T14:53:09.280Z"}
+info: Recommendations: {"timestamp":"2025-08-01T14:53:09.280Z"}
+info:   1. 3 tests failed. Review error logs and fix critical issues. {"timestamp":"2025-08-01T14:53:09.280Z"}
+info:   2. High error rate detected. System may not be production-ready. {"timestamp":"2025-08-01T14:53:09.280Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:53:09.292Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:53:09.292Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:53:09.292Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:53:09.292Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:53:09.292Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:53:09.292Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:53:09.292Z"}
+info: Integration validation completed in 0ms {"timestamp":"2025-08-01T14:53:09.292Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-01T14:53:09.292Z"}
+info: Core Services Test Results: 4 tests completed {"timestamp":"2025-08-01T14:53:09.292Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:53:09.307Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:53:09.307Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:53:09.307Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:53:09.307Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:53:09.307Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:53:09.307Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:53:09.307Z"}
+info: Benchmark completed: integration_test_benchmark - 48.63ms avg {"timestamp":"2025-08-01T14:53:09.595Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:53:09.595Z"}
+info: Integration validation completed in 289ms {"timestamp":"2025-08-01T14:53:09.596Z"}
+info: Results: 4/4 passed (100.0%) {"timestamp":"2025-08-01T14:53:09.596Z"}
+info: Performance Services Average Response Time: 72.25ms {"timestamp":"2025-08-01T14:53:09.596Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:53:09.610Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:53:09.610Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:53:09.610Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:53:09.611Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:53:09.611Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-01T14:53:09.611Z"}
+info: Results: 3/3 passed (100.0%) {"timestamp":"2025-08-01T14:53:09.611Z"}
+info: Error Handling Test Results: 0/3 failures {"timestamp":"2025-08-01T14:53:09.612Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:53:09.625Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:53:09.625Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:53:09.625Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:53:09.626Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:53:09.626Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:53:09.626Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:53:09.626Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-01T14:53:09.626Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-01T14:53:09.626Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:53:09.671Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:53:09.671Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:53:09.671Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:53:09.671Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:53:09.671Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:53:09.671Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:53:09.671Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-01T14:53:09.671Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-01T14:53:09.671Z"}
+info: Performance Validation: 1ms total, 1ms reported {"timestamp":"2025-08-01T14:53:09.671Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:53:09.686Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:53:09.686Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:53:09.686Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:53:09.687Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:53:09.687Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:53:09.687Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:53:09.687Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-01T14:53:09.687Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-01T14:53:09.687Z"}
+info: Slowest Test: analytics.initialization - 1ms {"timestamp":"2025-08-01T14:53:09.688Z"}
+info: Fastest Test: integration.cross_service_data_flow - 0ms {"timestamp":"2025-08-01T14:53:09.688Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:53:09.699Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:53:09.699Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:53:09.699Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:53:09.699Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:53:09.700Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:53:09.700Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:53:09.700Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:53:09.700Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:53:09.700Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:53:09.700Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:53:09.700Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:53:09.700Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:53:09.700Z"}
+info: Benchmark completed: integration_test_benchmark - 60.57ms avg {"timestamp":"2025-08-01T14:53:10.066Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:53:10.067Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:53:10.067Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:53:10.067Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:53:10.067Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:53:10.067Z"}
+info: Integration validation completed in 368ms {"timestamp":"2025-08-01T14:53:10.067Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-01T14:53:10.067Z"}
+info: System Health Score: 90.9% {"timestamp":"2025-08-01T14:53:10.068Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:53:10.081Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:53:10.082Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:53:10.082Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:53:10.082Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:53:10.082Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:53:10.082Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:53:10.082Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:53:10.082Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:53:10.082Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:53:10.082Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:53:10.082Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:53:10.082Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:53:10.082Z"}
+info: Benchmark completed: integration_test_benchmark - 57.46ms avg {"timestamp":"2025-08-01T14:53:10.428Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:53:10.428Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:53:10.429Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:53:10.429Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:53:10.429Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:53:10.429Z"}
+info: Integration validation completed in 348ms {"timestamp":"2025-08-01T14:53:10.429Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-01T14:53:10.429Z"}
+info: Generated 2 recommendations and identified 3 critical issues {"timestamp":"2025-08-01T14:53:10.430Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:53:10.444Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:53:10.444Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:53:10.444Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:53:10.444Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:53:10.444Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:53:10.444Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:53:10.444Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:53:10.444Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:53:10.444Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:53:10.445Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:53:10.445Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:53:10.445Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:53:10.445Z"}
+info: Benchmark completed: integration_test_benchmark - 54.55ms avg {"timestamp":"2025-08-01T14:53:10.747Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:53:10.747Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:53:10.748Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:53:10.748Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:53:10.748Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:53:10.748Z"}
+info: Integration validation completed in 304ms {"timestamp":"2025-08-01T14:53:10.748Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-01T14:53:10.748Z"}
+info: Validated integration of 7 Phase 2 Week 3 components {"timestamp":"2025-08-01T14:53:10.748Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:53:10.762Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:53:10.762Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:53:10.762Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:53:10.763Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:53:10.763Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:53:10.763Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:53:10.763Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:53:10.763Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:53:10.763Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:53:10.763Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:53:10.763Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:53:10.763Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:53:10.763Z"}
+info: Benchmark completed: integration_test_benchmark - 51.17ms avg {"timestamp":"2025-08-01T14:53:11.063Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:53:11.063Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:53:11.063Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:53:11.063Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:53:11.063Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:53:11.064Z"}
+info: Integration validation completed in 302ms {"timestamp":"2025-08-01T14:53:11.064Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-01T14:53:11.064Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:53:11.078Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:53:11.078Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:53:11.078Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:53:11.078Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:53:11.079Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:53:11.079Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:53:11.079Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:53:11.079Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:53:11.079Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:53:11.079Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:53:11.079Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:53:11.079Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:53:11.079Z"}
+info: Benchmark completed: integration_test_benchmark - 54.78ms avg {"timestamp":"2025-08-01T14:53:11.397Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:53:11.397Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:53:11.397Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:53:11.397Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:53:11.397Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:53:11.397Z"}
+info: Integration validation completed in 320ms {"timestamp":"2025-08-01T14:53:11.398Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-01T14:53:11.398Z"}
+info: Performance monitoring stopped {"timestamp":"2025-08-01T14:53:11.412Z"}
+info: Cleaned up 1 old records from performance_metrics {"timestamp":"2025-08-01T14:53:11.413Z"}
+info: Cleaned up 1 old records from query_performance {"timestamp":"2025-08-01T14:53:11.413Z"}
+info: Cleaned up 1 old records from resource_metrics {"timestamp":"2025-08-01T14:53:11.413Z"}
+info: Cleaned up 1 old records from performance_alerts {"timestamp":"2025-08-01T14:53:11.413Z"}
+info: Performance monitoring service destroyed {"timestamp":"2025-08-01T14:53:11.413Z"}
+info: Database optimization service destroyed {"timestamp":"2025-08-01T14:53:11.413Z"}
+info: Performance benchmarking service destroyed {"timestamp":"2025-08-01T14:53:11.413Z"}
+info: Performance monitoring stopped {"timestamp":"2025-08-01T14:53:11.413Z"}
+info: Performance monitoring stopped {"timestamp":"2025-08-01T14:53:11.413Z"}
+info: Cleaned up 1 old records from performance_metrics {"timestamp":"2025-08-01T14:53:11.413Z"}
+info: Cleaned up 1 old records from query_performance {"timestamp":"2025-08-01T14:53:11.413Z"}
+info: Cleaned up 1 old records from resource_metrics {"timestamp":"2025-08-01T14:53:11.414Z"}
+info: Cleaned up 1 old records from performance_alerts {"timestamp":"2025-08-01T14:53:11.414Z"}
+info: Performance monitoring service destroyed {"timestamp":"2025-08-01T14:53:11.414Z"}
+info: Database optimization service destroyed {"timestamp":"2025-08-01T14:53:11.414Z"}
+info: Performance benchmarking service destroyed {"timestamp":"2025-08-01T14:53:11.414Z"}
+error: Error during service destruction: this.analyticsService.destroy is not a function {"stack":"TypeError: this.analyticsService.destroy is not a function\n    at PerformanceEnhancedDocumentVersionService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\PerformanceEnhancedDocumentVersionService.ts:564:45)\n    at IntegrationValidationService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\IntegrationValidationService.ts:949:25)\n    at Object.<anonymous> (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\__tests__\\integration\\SystemIntegrationValidation.test.ts:56:9)","timestamp":"2025-08-01T14:53:11.414Z"}
+warn: Failed to destroy service enhancedVersionService: this.analyticsService.destroy is not a function {"stack":"TypeError: this.analyticsService.destroy is not a function\n    at PerformanceEnhancedDocumentVersionService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\PerformanceEnhancedDocumentVersionService.ts:564:45)\n    at IntegrationValidationService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\IntegrationValidationService.ts:949:25)\n    at Object.<anonymous> (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\__tests__\\integration\\SystemIntegrationValidation.test.ts:56:9)","timestamp":"2025-08-01T14:53:11.415Z"}
+info: Integration Validation Service destroyed {"timestamp":"2025-08-01T14:53:11.415Z"}
+info: Integration validation tables initialized successfully {"timestamp":"2025-08-01T14:56:07.651Z"}
+info: Performance monitoring tables initialized successfully {"timestamp":"2025-08-01T14:56:07.652Z"}
+info: Performance monitoring started with interval: 30000ms {"timestamp":"2025-08-01T14:56:07.652Z"}
+info: Performance benchmarking tables initialized successfully {"timestamp":"2025-08-01T14:56:07.653Z"}
+debug: Created database connection: conn_1754060167653_pqfykj90p {"timestamp":"2025-08-01T14:56:07.653Z"}
+debug: Created database connection: conn_1754060167653_q2a0ycrxj {"timestamp":"2025-08-01T14:56:07.653Z"}
+info: Found 1 tables to analyze {"timestamp":"2025-08-01T14:56:07.653Z"}
+info: Database analysis completed {"timestamp":"2025-08-01T14:56:07.653Z"}
+info: Database optimization service initialized with 2 connections {"timestamp":"2025-08-01T14:56:07.653Z"}
+debug: Created database connection: conn_1754060167653_4wb25bv3x {"timestamp":"2025-08-01T14:56:07.653Z"}
+debug: Created database connection: conn_1754060167653_c09t0ybf0 {"timestamp":"2025-08-01T14:56:07.653Z"}
+info: Found 1 tables to analyze {"timestamp":"2025-08-01T14:56:07.653Z"}
+info: Database analysis completed {"timestamp":"2025-08-01T14:56:07.653Z"}
+info: Database optimization service initialized with 2 connections {"timestamp":"2025-08-01T14:56:07.653Z"}
+info: Performance monitoring tables initialized successfully {"timestamp":"2025-08-01T14:56:07.653Z"}
+info: Performance monitoring started with interval: 30000ms {"timestamp":"2025-08-01T14:56:07.653Z"}
+info: Performance benchmarking tables initialized successfully {"timestamp":"2025-08-01T14:56:07.653Z"}
+info: Starting benchmark: version_creation_baseline {"timestamp":"2025-08-01T14:56:07.654Z"}
+info: Running 2 warmup iterations {"timestamp":"2025-08-01T14:56:07.654Z"}
+info: Benchmark completed: version_creation_baseline - 115.17ms avg {"timestamp":"2025-08-01T14:56:09.050Z"}
+info: Baseline established for benchmark: version_creation_baseline {"timestamp":"2025-08-01T14:56:09.051Z"}
+info: Established baseline for version_creation_baseline: 115.17ms avg {"timestamp":"2025-08-01T14:56:09.051Z"}
+info: Starting benchmark: version_comparison_baseline {"timestamp":"2025-08-01T14:56:09.051Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:56:09.051Z"}
+info: Benchmark completed: version_comparison_baseline - 113.00ms avg {"timestamp":"2025-08-01T14:56:09.719Z"}
+info: Baseline established for benchmark: version_comparison_baseline {"timestamp":"2025-08-01T14:56:09.720Z"}
+info: Established baseline for version_comparison_baseline: 113.00ms avg {"timestamp":"2025-08-01T14:56:09.720Z"}
+info: Performance Enhanced Document Version Service initialized in 2066.65ms {"timestamp":"2025-08-01T14:56:09.720Z"}
+info: All integration test services initialized {"timestamp":"2025-08-01T14:56:09.720Z"}
+info: Integration Validation Service initialized successfully {"timestamp":"2025-08-01T14:56:09.720Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:56:09.721Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:56:09.722Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:56:09.722Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:56:09.723Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:56:09.724Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:56:09.724Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:56:09.724Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:56:09.724Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:56:09.724Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:56:09.724Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:56:09.725Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:56:09.725Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:56:09.725Z"}
+info: Benchmark completed: integration_test_benchmark - 44.40ms avg {"timestamp":"2025-08-01T14:56:09.986Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:56:09.987Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:56:09.988Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:56:09.988Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:56:09.988Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:56:09.988Z"}
+info: Integration validation completed in 268ms {"timestamp":"2025-08-01T14:56:09.990Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-01T14:56:09.990Z"}
+info: === INTEGRATION VALIDATION RESULTS === {"timestamp":"2025-08-01T14:56:09.992Z"}
+info: Total Tests: 11 {"timestamp":"2025-08-01T14:56:09.992Z"}
+info: Passed: 7 {"timestamp":"2025-08-01T14:56:09.992Z"}
+info: Failed: 3 {"timestamp":"2025-08-01T14:56:09.992Z"}
+info: Warnings: 1 {"timestamp":"2025-08-01T14:56:09.992Z"}
+info: Success Rate: 63.6% {"timestamp":"2025-08-01T14:56:09.992Z"}
+info: Duration: 268ms {"timestamp":"2025-08-01T14:56:09.992Z"}
+info: Average Response Time: 24.18ms {"timestamp":"2025-08-01T14:56:09.992Z"}
+warn: Critical Issues Found: {"timestamp":"2025-08-01T14:56:09.992Z"}
+warn:   1. analytics.initialization: Analytics service initialization failed {"timestamp":"2025-08-01T14:56:09.992Z"}
+warn:   2. dashboard.creation: Dashboard creation failed {"timestamp":"2025-08-01T14:56:09.992Z"}
+warn:   3. integration.cross_service_data_flow: Cross-service data flow failed {"timestamp":"2025-08-01T14:56:09.992Z"}
+info: Recommendations: {"timestamp":"2025-08-01T14:56:09.992Z"}
+info:   1. 3 tests failed. Review error logs and fix critical issues. {"timestamp":"2025-08-01T14:56:09.992Z"}
+info:   2. High error rate detected. System may not be production-ready. {"timestamp":"2025-08-01T14:56:09.992Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:56:10.018Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:56:10.018Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:56:10.018Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:56:10.018Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:56:10.018Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:56:10.018Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:56:10.019Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-01T14:56:10.019Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-01T14:56:10.019Z"}
+info: Core Services Test Results: 4 tests completed {"timestamp":"2025-08-01T14:56:10.019Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:56:10.032Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:56:10.032Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:56:10.032Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:56:10.033Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:56:10.033Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:56:10.033Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:56:10.033Z"}
+info: Benchmark completed: integration_test_benchmark - 50.99ms avg {"timestamp":"2025-08-01T14:56:10.331Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:56:10.332Z"}
+info: Integration validation completed in 300ms {"timestamp":"2025-08-01T14:56:10.332Z"}
+info: Results: 4/4 passed (100.0%) {"timestamp":"2025-08-01T14:56:10.332Z"}
+info: Performance Services Average Response Time: 75.00ms {"timestamp":"2025-08-01T14:56:10.333Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:56:10.345Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:56:10.345Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:56:10.345Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:56:10.345Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:56:10.345Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-01T14:56:10.346Z"}
+info: Results: 3/3 passed (100.0%) {"timestamp":"2025-08-01T14:56:10.346Z"}
+info: Error Handling Test Results: 0/3 failures {"timestamp":"2025-08-01T14:56:10.347Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:56:10.361Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:56:10.362Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:56:10.362Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:56:10.362Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:56:10.362Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:56:10.362Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:56:10.362Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-01T14:56:10.362Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-01T14:56:10.362Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:56:10.406Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:56:10.406Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:56:10.406Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:56:10.407Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:56:10.407Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:56:10.407Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:56:10.407Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-01T14:56:10.407Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-01T14:56:10.407Z"}
+info: Performance Validation: 2ms total, 1ms reported {"timestamp":"2025-08-01T14:56:10.408Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:56:10.421Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:56:10.421Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:56:10.421Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:56:10.421Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:56:10.421Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:56:10.421Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:56:10.421Z"}
+info: Integration validation completed in 0ms {"timestamp":"2025-08-01T14:56:10.422Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-01T14:56:10.422Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:56:10.436Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:56:10.437Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:56:10.437Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:56:10.437Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:56:10.437Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:56:10.437Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:56:10.437Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:56:10.437Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:56:10.437Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:56:10.438Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:56:10.438Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:56:10.438Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:56:10.438Z"}
+info: Benchmark completed: integration_test_benchmark - 62.40ms avg {"timestamp":"2025-08-01T14:56:10.793Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:56:10.793Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:56:10.794Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:56:10.794Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:56:10.794Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:56:10.794Z"}
+info: Integration validation completed in 359ms {"timestamp":"2025-08-01T14:56:10.795Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-01T14:56:10.795Z"}
+info: System Health Score: 90.9% {"timestamp":"2025-08-01T14:56:10.796Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:56:10.808Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:56:10.808Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:56:10.808Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:56:10.808Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:56:10.808Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:56:10.809Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:56:10.809Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:56:10.809Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:56:10.809Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:56:10.809Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:56:10.809Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:56:10.809Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:56:10.809Z"}
+info: Benchmark completed: integration_test_benchmark - 41.69ms avg {"timestamp":"2025-08-01T14:56:11.091Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:56:11.091Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:56:11.091Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:56:11.091Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:56:11.091Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:56:11.091Z"}
+info: Integration validation completed in 284ms {"timestamp":"2025-08-01T14:56:11.092Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-01T14:56:11.092Z"}
+info: Generated 2 recommendations and identified 3 critical issues {"timestamp":"2025-08-01T14:56:11.094Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:56:11.106Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:56:11.106Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:56:11.106Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:56:11.106Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:56:11.106Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:56:11.106Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:56:11.106Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:56:11.106Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:56:11.106Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:56:11.106Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:56:11.107Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:56:11.107Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:56:11.107Z"}
+info: Benchmark completed: integration_test_benchmark - 59.44ms avg {"timestamp":"2025-08-01T14:56:11.447Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:56:11.448Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:56:11.448Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:56:11.448Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:56:11.448Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:56:11.449Z"}
+info: Integration validation completed in 344ms {"timestamp":"2025-08-01T14:56:11.450Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-01T14:56:11.450Z"}
+info: Validated integration of 7 Phase 2 Week 3 components {"timestamp":"2025-08-01T14:56:11.451Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:56:11.463Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:56:11.463Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:56:11.463Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:56:11.463Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:56:11.463Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:56:11.463Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:56:11.463Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:56:11.463Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:56:11.463Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:56:11.464Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:56:11.464Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:56:11.464Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:56:11.464Z"}
+info: Benchmark completed: integration_test_benchmark - 65.67ms avg {"timestamp":"2025-08-01T14:56:11.821Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:56:11.821Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:56:11.821Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:56:11.821Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:56:11.821Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:56:11.821Z"}
+info: Integration validation completed in 359ms {"timestamp":"2025-08-01T14:56:11.822Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-01T14:56:11.822Z"}
+info: Starting integration validation... {"timestamp":"2025-08-01T14:56:11.836Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-01T14:56:11.837Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-01T14:56:11.837Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-01T14:56:11.837Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-01T14:56:11.837Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-01T14:56:11.837Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-01T14:56:11.837Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-01T14:56:11.837Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-01T14:56:11.837Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-01T14:56:11.837Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-01T14:56:11.837Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-01T14:56:11.837Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-01T14:56:11.837Z"}
+info: Benchmark completed: integration_test_benchmark - 59.40ms avg {"timestamp":"2025-08-01T14:56:12.177Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-01T14:56:12.177Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-01T14:56:12.178Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-01T14:56:12.178Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-01T14:56:12.178Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-01T14:56:12.178Z"}
+info: Integration validation completed in 342ms {"timestamp":"2025-08-01T14:56:12.179Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-01T14:56:12.179Z"}
+info: Performance monitoring stopped {"timestamp":"2025-08-01T14:56:12.192Z"}
+info: Cleaned up 1 old records from performance_metrics {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Cleaned up 1 old records from query_performance {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Cleaned up 1 old records from resource_metrics {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Cleaned up 1 old records from performance_alerts {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Performance monitoring service destroyed {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Database optimization service destroyed {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Performance benchmarking service destroyed {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Performance monitoring stopped {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Performance monitoring stopped {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Cleaned up 1 old records from performance_metrics {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Cleaned up 1 old records from query_performance {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Cleaned up 1 old records from resource_metrics {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Cleaned up 1 old records from performance_alerts {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Performance monitoring service destroyed {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Database optimization service destroyed {"timestamp":"2025-08-01T14:56:12.193Z"}
+info: Performance benchmarking service destroyed {"timestamp":"2025-08-01T14:56:12.193Z"}
+error: Error during service destruction: this.analyticsService.destroy is not a function {"stack":"TypeError: this.analyticsService.destroy is not a function\n    at PerformanceEnhancedDocumentVersionService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\PerformanceEnhancedDocumentVersionService.ts:564:45)\n    at IntegrationValidationService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\IntegrationValidationService.ts:949:25)\n    at Object.<anonymous> (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\__tests__\\integration\\SystemIntegrationValidation.test.ts:56:9)","timestamp":"2025-08-01T14:56:12.195Z"}
+warn: Failed to destroy service enhancedVersionService: this.analyticsService.destroy is not a function {"stack":"TypeError: this.analyticsService.destroy is not a function\n    at PerformanceEnhancedDocumentVersionService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\PerformanceEnhancedDocumentVersionService.ts:564:45)\n    at IntegrationValidationService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\IntegrationValidationService.ts:949:25)\n    at Object.<anonymous> (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\__tests__\\integration\\SystemIntegrationValidation.test.ts:56:9)","timestamp":"2025-08-01T14:56:12.195Z"}
+info: Integration Validation Service destroyed {"timestamp":"2025-08-01T14:56:12.195Z"}
+info: Integration validation tables initialized successfully {"timestamp":"2025-08-02T03:30:44.377Z"}
+info: Performance monitoring tables initialized successfully {"timestamp":"2025-08-02T03:30:44.378Z"}
+info: Performance monitoring started with interval: 30000ms {"timestamp":"2025-08-02T03:30:44.378Z"}
+info: Performance benchmarking tables initialized successfully {"timestamp":"2025-08-02T03:30:44.378Z"}
+debug: Created database connection: conn_1754105444378_q98g94vck {"timestamp":"2025-08-02T03:30:44.378Z"}
+debug: Created database connection: conn_1754105444378_jcdtuvtec {"timestamp":"2025-08-02T03:30:44.378Z"}
+info: Found 1 tables to analyze {"timestamp":"2025-08-02T03:30:44.378Z"}
+info: Database analysis completed {"timestamp":"2025-08-02T03:30:44.378Z"}
+info: Database optimization service initialized with 2 connections {"timestamp":"2025-08-02T03:30:44.378Z"}
+debug: Created database connection: conn_1754105444379_gyj0324d4 {"timestamp":"2025-08-02T03:30:44.379Z"}
+debug: Created database connection: conn_1754105444379_d2x7p17cz {"timestamp":"2025-08-02T03:30:44.379Z"}
+info: Found 1 tables to analyze {"timestamp":"2025-08-02T03:30:44.379Z"}
+info: Database analysis completed {"timestamp":"2025-08-02T03:30:44.379Z"}
+info: Database optimization service initialized with 2 connections {"timestamp":"2025-08-02T03:30:44.379Z"}
+info: Performance monitoring tables initialized successfully {"timestamp":"2025-08-02T03:30:44.379Z"}
+info: Performance monitoring started with interval: 30000ms {"timestamp":"2025-08-02T03:30:44.379Z"}
+info: Performance benchmarking tables initialized successfully {"timestamp":"2025-08-02T03:30:44.379Z"}
+info: Starting benchmark: version_creation_baseline {"timestamp":"2025-08-02T03:30:44.379Z"}
+info: Running 2 warmup iterations {"timestamp":"2025-08-02T03:30:44.379Z"}
+info: Benchmark completed: version_creation_baseline - 110.42ms avg {"timestamp":"2025-08-02T03:30:45.755Z"}
+info: Baseline established for benchmark: version_creation_baseline {"timestamp":"2025-08-02T03:30:45.755Z"}
+info: Established baseline for version_creation_baseline: 110.42ms avg {"timestamp":"2025-08-02T03:30:45.755Z"}
+info: Starting benchmark: version_comparison_baseline {"timestamp":"2025-08-02T03:30:45.755Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:30:45.755Z"}
+info: Benchmark completed: version_comparison_baseline - 122.07ms avg {"timestamp":"2025-08-02T03:30:46.440Z"}
+info: Baseline established for benchmark: version_comparison_baseline {"timestamp":"2025-08-02T03:30:46.441Z"}
+info: Established baseline for version_comparison_baseline: 122.07ms avg {"timestamp":"2025-08-02T03:30:46.441Z"}
+info: Performance Enhanced Document Version Service initialized in 2062.13ms {"timestamp":"2025-08-02T03:30:46.441Z"}
+info: All integration test services initialized {"timestamp":"2025-08-02T03:30:46.441Z"}
+info: Integration Validation Service initialized successfully {"timestamp":"2025-08-02T03:30:46.441Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:30:46.441Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:30:46.442Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:30:46.442Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:30:46.442Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:30:46.442Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:30:46.442Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:30:46.442Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:30:46.442Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:30:46.442Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:30:46.443Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:30:46.443Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:30:46.443Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:30:46.443Z"}
+info: Benchmark completed: integration_test_benchmark - 54.90ms avg {"timestamp":"2025-08-02T03:30:46.761Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:30:46.761Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:30:46.761Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:30:46.762Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:30:46.762Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:30:46.762Z"}
+info: Integration validation completed in 321ms {"timestamp":"2025-08-02T03:30:46.763Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-02T03:30:46.763Z"}
+info: === INTEGRATION VALIDATION RESULTS === {"timestamp":"2025-08-02T03:30:46.765Z"}
+info: Total Tests: 11 {"timestamp":"2025-08-02T03:30:46.765Z"}
+info: Passed: 7 {"timestamp":"2025-08-02T03:30:46.765Z"}
+info: Failed: 3 {"timestamp":"2025-08-02T03:30:46.765Z"}
+info: Warnings: 1 {"timestamp":"2025-08-02T03:30:46.765Z"}
+info: Success Rate: 63.6% {"timestamp":"2025-08-02T03:30:46.765Z"}
+info: Duration: 321ms {"timestamp":"2025-08-02T03:30:46.765Z"}
+info: Average Response Time: 29.00ms {"timestamp":"2025-08-02T03:30:46.765Z"}
+warn: Critical Issues Found: {"timestamp":"2025-08-02T03:30:46.765Z"}
+warn:   1. analytics.initialization: Analytics service initialization failed {"timestamp":"2025-08-02T03:30:46.765Z"}
+warn:   2. dashboard.creation: Dashboard creation failed {"timestamp":"2025-08-02T03:30:46.765Z"}
+warn:   3. integration.cross_service_data_flow: Cross-service data flow failed {"timestamp":"2025-08-02T03:30:46.765Z"}
+info: Recommendations: {"timestamp":"2025-08-02T03:30:46.765Z"}
+info:   1. 3 tests failed. Review error logs and fix critical issues. {"timestamp":"2025-08-02T03:30:46.765Z"}
+info:   2. High error rate detected. System may not be production-ready. {"timestamp":"2025-08-02T03:30:46.765Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:30:46.776Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:30:46.777Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:30:46.777Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:30:46.777Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:30:46.777Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:30:46.777Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:30:46.777Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-02T03:30:46.777Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-02T03:30:46.777Z"}
+info: Core Services Test Results: 4 tests completed {"timestamp":"2025-08-02T03:30:46.777Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:30:46.791Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:30:46.791Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:30:46.791Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:30:46.791Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:30:46.791Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:30:46.791Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:30:46.791Z"}
+info: Benchmark completed: integration_test_benchmark - 51.77ms avg {"timestamp":"2025-08-02T03:30:47.096Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:30:47.097Z"}
+info: Integration validation completed in 306ms {"timestamp":"2025-08-02T03:30:47.097Z"}
+info: Results: 4/4 passed (100.0%) {"timestamp":"2025-08-02T03:30:47.097Z"}
+info: Performance Services Average Response Time: 76.50ms {"timestamp":"2025-08-02T03:30:47.098Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:30:47.111Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:30:47.112Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:30:47.112Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:30:47.112Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:30:47.112Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-02T03:30:47.112Z"}
+info: Results: 3/3 passed (100.0%) {"timestamp":"2025-08-02T03:30:47.112Z"}
+info: Error Handling Test Results: 0/3 failures {"timestamp":"2025-08-02T03:30:47.113Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:30:47.126Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:30:47.127Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:30:47.127Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:30:47.127Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:30:47.127Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:30:47.127Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:30:47.127Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-02T03:30:47.127Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-02T03:30:47.127Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:30:47.172Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:30:47.172Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:30:47.172Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:30:47.172Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:30:47.172Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:30:47.172Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:30:47.172Z"}
+info: Integration validation completed in 0ms {"timestamp":"2025-08-02T03:30:47.172Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-02T03:30:47.172Z"}
+info: Performance Validation: 0ms total, 0ms reported {"timestamp":"2025-08-02T03:30:47.173Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:30:47.187Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:30:47.187Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:30:47.187Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:30:47.187Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:30:47.187Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:30:47.187Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:30:47.187Z"}
+info: Integration validation completed in 0ms {"timestamp":"2025-08-02T03:30:47.187Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-02T03:30:47.187Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:30:47.203Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:30:47.203Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:30:47.203Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:30:47.203Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:30:47.203Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:30:47.203Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:30:47.203Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:30:47.203Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:30:47.203Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:30:47.203Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:30:47.204Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:30:47.204Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:30:47.204Z"}
+info: Benchmark completed: integration_test_benchmark - 58.44ms avg {"timestamp":"2025-08-02T03:30:47.571Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:30:47.572Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:30:47.572Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:30:47.572Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:30:47.572Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:30:47.572Z"}
+info: Integration validation completed in 369ms {"timestamp":"2025-08-02T03:30:47.572Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-02T03:30:47.572Z"}
+info: System Health Score: 90.9% {"timestamp":"2025-08-02T03:30:47.572Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:30:47.587Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:30:47.587Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:30:47.587Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:30:47.587Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:30:47.587Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:30:47.587Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:30:47.587Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:30:47.587Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:30:47.587Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:30:47.588Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:30:47.588Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:30:47.588Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:30:47.588Z"}
+info: Benchmark completed: integration_test_benchmark - 58.44ms avg {"timestamp":"2025-08-02T03:30:47.941Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:30:47.942Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:30:47.942Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:30:47.942Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:30:47.942Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:30:47.942Z"}
+info: Integration validation completed in 355ms {"timestamp":"2025-08-02T03:30:47.942Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-02T03:30:47.942Z"}
+info: Generated 2 recommendations and identified 3 critical issues {"timestamp":"2025-08-02T03:30:47.943Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:30:47.956Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:30:47.957Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:30:47.957Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:30:47.957Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:30:47.957Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:30:47.957Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:30:47.957Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:30:47.957Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:30:47.957Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:30:47.957Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:30:47.957Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:30:47.957Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:30:47.957Z"}
+info: Benchmark completed: integration_test_benchmark - 55.06ms avg {"timestamp":"2025-08-02T03:30:48.277Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:30:48.277Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:30:48.277Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:30:48.277Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:30:48.277Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:30:48.277Z"}
+info: Integration validation completed in 322ms {"timestamp":"2025-08-02T03:30:48.278Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-02T03:30:48.278Z"}
+info: Validated integration of 7 Phase 2 Week 3 components {"timestamp":"2025-08-02T03:30:48.278Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:30:48.292Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:30:48.292Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:30:48.292Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:30:48.292Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:30:48.293Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:30:48.293Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:30:48.293Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:30:48.293Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:30:48.293Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:30:48.293Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:30:48.293Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:30:48.293Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:30:48.293Z"}
+info: Benchmark completed: integration_test_benchmark - 58.38ms avg {"timestamp":"2025-08-02T03:30:48.629Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:30:48.629Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:30:48.630Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:30:48.630Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:30:48.630Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:30:48.630Z"}
+info: Integration validation completed in 338ms {"timestamp":"2025-08-02T03:30:48.630Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-02T03:30:48.630Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:30:48.645Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:30:48.645Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:30:48.645Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:30:48.645Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:30:48.645Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:30:48.645Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:30:48.646Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:30:48.646Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:30:48.646Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:30:48.646Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:30:48.646Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:30:48.646Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:30:48.646Z"}
+info: Benchmark completed: integration_test_benchmark - 61.15ms avg {"timestamp":"2025-08-02T03:30:49.026Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:30:49.026Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:30:49.027Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:30:49.027Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:30:49.027Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:30:49.027Z"}
+info: Integration validation completed in 382ms {"timestamp":"2025-08-02T03:30:49.027Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-02T03:30:49.027Z"}
+info: Performance monitoring stopped {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Cleaned up 1 old records from performance_metrics {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Cleaned up 1 old records from query_performance {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Cleaned up 1 old records from resource_metrics {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Cleaned up 1 old records from performance_alerts {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Performance monitoring service destroyed {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Database optimization service destroyed {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Performance benchmarking service destroyed {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Performance monitoring stopped {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Performance monitoring stopped {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Cleaned up 1 old records from performance_metrics {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Cleaned up 1 old records from query_performance {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Cleaned up 1 old records from resource_metrics {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Cleaned up 1 old records from performance_alerts {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Performance monitoring service destroyed {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Database optimization service destroyed {"timestamp":"2025-08-02T03:30:49.042Z"}
+info: Performance benchmarking service destroyed {"timestamp":"2025-08-02T03:30:49.042Z"}
+error: Error during service destruction: this.analyticsService.destroy is not a function {"stack":"TypeError: this.analyticsService.destroy is not a function\n    at PerformanceEnhancedDocumentVersionService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\PerformanceEnhancedDocumentVersionService.ts:564:45)\n    at IntegrationValidationService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\IntegrationValidationService.ts:949:25)\n    at Object.<anonymous> (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\__tests__\\integration\\SystemIntegrationValidation.test.ts:56:9)","timestamp":"2025-08-02T03:30:49.043Z"}
+warn: Failed to destroy service enhancedVersionService: this.analyticsService.destroy is not a function {"stack":"TypeError: this.analyticsService.destroy is not a function\n    at PerformanceEnhancedDocumentVersionService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\PerformanceEnhancedDocumentVersionService.ts:564:45)\n    at IntegrationValidationService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\IntegrationValidationService.ts:949:25)\n    at Object.<anonymous> (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\__tests__\\integration\\SystemIntegrationValidation.test.ts:56:9)","timestamp":"2025-08-02T03:30:49.043Z"}
+info: Integration Validation Service destroyed {"timestamp":"2025-08-02T03:30:49.043Z"}
+info: Integration validation tables initialized successfully {"timestamp":"2025-08-02T03:36:29.397Z"}
+info: Performance monitoring tables initialized successfully {"timestamp":"2025-08-02T03:36:29.398Z"}
+info: Performance monitoring started with interval: 30000ms {"timestamp":"2025-08-02T03:36:29.398Z"}
+info: Performance benchmarking tables initialized successfully {"timestamp":"2025-08-02T03:36:29.398Z"}
+debug: Created database connection: conn_1754105789399_dykcvlr80 {"timestamp":"2025-08-02T03:36:29.399Z"}
+debug: Created database connection: conn_1754105789399_uox2ybere {"timestamp":"2025-08-02T03:36:29.399Z"}
+info: Found 1 tables to analyze {"timestamp":"2025-08-02T03:36:29.399Z"}
+info: Database analysis completed {"timestamp":"2025-08-02T03:36:29.399Z"}
+info: Database optimization service initialized with 2 connections {"timestamp":"2025-08-02T03:36:29.399Z"}
+debug: Created database connection: conn_1754105789399_hd6x7oe20 {"timestamp":"2025-08-02T03:36:29.399Z"}
+debug: Created database connection: conn_1754105789399_t9xafu9w8 {"timestamp":"2025-08-02T03:36:29.399Z"}
+info: Found 1 tables to analyze {"timestamp":"2025-08-02T03:36:29.399Z"}
+info: Database analysis completed {"timestamp":"2025-08-02T03:36:29.399Z"}
+info: Database optimization service initialized with 2 connections {"timestamp":"2025-08-02T03:36:29.399Z"}
+info: Performance monitoring tables initialized successfully {"timestamp":"2025-08-02T03:36:29.399Z"}
+info: Performance monitoring started with interval: 30000ms {"timestamp":"2025-08-02T03:36:29.399Z"}
+info: Performance benchmarking tables initialized successfully {"timestamp":"2025-08-02T03:36:29.399Z"}
+info: Starting benchmark: version_creation_baseline {"timestamp":"2025-08-02T03:36:29.400Z"}
+info: Running 2 warmup iterations {"timestamp":"2025-08-02T03:36:29.400Z"}
+info: Benchmark completed: version_creation_baseline - 90.37ms avg {"timestamp":"2025-08-02T03:36:30.497Z"}
+info: Baseline established for benchmark: version_creation_baseline {"timestamp":"2025-08-02T03:36:30.497Z"}
+info: Established baseline for version_creation_baseline: 90.37ms avg {"timestamp":"2025-08-02T03:36:30.497Z"}
+info: Starting benchmark: version_comparison_baseline {"timestamp":"2025-08-02T03:36:30.497Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:36:30.497Z"}
+info: Benchmark completed: version_comparison_baseline - 94.55ms avg {"timestamp":"2025-08-02T03:36:31.108Z"}
+info: Baseline established for benchmark: version_comparison_baseline {"timestamp":"2025-08-02T03:36:31.108Z"}
+info: Established baseline for version_comparison_baseline: 94.55ms avg {"timestamp":"2025-08-02T03:36:31.108Z"}
+info: Performance Enhanced Document Version Service initialized in 1708.88ms {"timestamp":"2025-08-02T03:36:31.108Z"}
+info: All integration test services initialized {"timestamp":"2025-08-02T03:36:31.108Z"}
+info: Integration Validation Service initialized successfully {"timestamp":"2025-08-02T03:36:31.108Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:36:31.109Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:36:31.109Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:36:31.109Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:36:31.109Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:36:31.110Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:36:31.110Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:36:31.110Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:36:31.110Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:36:31.110Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:36:31.110Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:36:31.111Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:36:31.111Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:36:31.111Z"}
+info: Benchmark completed: integration_test_benchmark - 51.83ms avg {"timestamp":"2025-08-02T03:36:31.429Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:36:31.429Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:36:31.430Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:36:31.430Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:36:31.430Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:36:31.430Z"}
+info: Integration validation completed in 322ms {"timestamp":"2025-08-02T03:36:31.431Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-02T03:36:31.431Z"}
+info: === INTEGRATION VALIDATION RESULTS === {"timestamp":"2025-08-02T03:36:31.433Z"}
+info: Total Tests: 11 {"timestamp":"2025-08-02T03:36:31.433Z"}
+info: Passed: 7 {"timestamp":"2025-08-02T03:36:31.433Z"}
+info: Failed: 3 {"timestamp":"2025-08-02T03:36:31.433Z"}
+info: Warnings: 1 {"timestamp":"2025-08-02T03:36:31.433Z"}
+info: Success Rate: 63.6% {"timestamp":"2025-08-02T03:36:31.433Z"}
+info: Duration: 322ms {"timestamp":"2025-08-02T03:36:31.433Z"}
+info: Average Response Time: 29.27ms {"timestamp":"2025-08-02T03:36:31.433Z"}
+warn: Critical Issues Found: {"timestamp":"2025-08-02T03:36:31.433Z"}
+warn:   1. analytics.initialization: Analytics service initialization failed {"timestamp":"2025-08-02T03:36:31.433Z"}
+warn:   2. dashboard.creation: Dashboard creation failed {"timestamp":"2025-08-02T03:36:31.433Z"}
+warn:   3. integration.cross_service_data_flow: Cross-service data flow failed {"timestamp":"2025-08-02T03:36:31.433Z"}
+info: Recommendations: {"timestamp":"2025-08-02T03:36:31.433Z"}
+info:   1. 3 tests failed. Review error logs and fix critical issues. {"timestamp":"2025-08-02T03:36:31.433Z"}
+info:   2. High error rate detected. System may not be production-ready. {"timestamp":"2025-08-02T03:36:31.433Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:36:31.445Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:36:31.445Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:36:31.445Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:36:31.445Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:36:31.445Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:36:31.445Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:36:31.445Z"}
+info: Integration validation completed in 0ms {"timestamp":"2025-08-02T03:36:31.445Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-02T03:36:31.445Z"}
+info: Core Services Test Results: 4 tests completed {"timestamp":"2025-08-02T03:36:31.446Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:36:31.460Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:36:31.460Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:36:31.460Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:36:31.460Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:36:31.461Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:36:31.461Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:36:31.461Z"}
+info: Benchmark completed: integration_test_benchmark - 58.45ms avg {"timestamp":"2025-08-02T03:36:31.828Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:36:31.828Z"}
+info: Integration validation completed in 369ms {"timestamp":"2025-08-02T03:36:31.829Z"}
+info: Results: 4/4 passed (100.0%) {"timestamp":"2025-08-02T03:36:31.829Z"}
+info: Performance Services Average Response Time: 92.25ms {"timestamp":"2025-08-02T03:36:31.829Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:36:31.844Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:36:31.844Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:36:31.844Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:36:31.844Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:36:31.844Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-02T03:36:31.845Z"}
+info: Results: 3/3 passed (100.0%) {"timestamp":"2025-08-02T03:36:31.845Z"}
+info: Error Handling Test Results: 0/3 failures {"timestamp":"2025-08-02T03:36:31.845Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:36:31.859Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:36:31.859Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:36:31.859Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:36:31.859Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:36:31.859Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:36:31.859Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:36:31.859Z"}
+info: Integration validation completed in 0ms {"timestamp":"2025-08-02T03:36:31.860Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-02T03:36:31.860Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:36:31.904Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:36:31.904Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:36:31.904Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:36:31.904Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:36:31.904Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:36:31.904Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:36:31.904Z"}
+info: Integration validation completed in 0ms {"timestamp":"2025-08-02T03:36:31.904Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-02T03:36:31.905Z"}
+info: Performance Validation: 1ms total, 0ms reported {"timestamp":"2025-08-02T03:36:31.905Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:36:31.919Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:36:31.920Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:36:31.920Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:36:31.920Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:36:31.920Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:36:31.920Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:36:31.920Z"}
+info: Integration validation completed in 1ms {"timestamp":"2025-08-02T03:36:31.920Z"}
+info: Results: 0/4 passed (0.0%) {"timestamp":"2025-08-02T03:36:31.920Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:36:31.935Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:36:31.936Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:36:31.936Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:36:31.936Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:36:31.936Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:36:31.936Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:36:31.936Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:36:31.936Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:36:31.936Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:36:31.936Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:36:31.936Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:36:31.936Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:36:31.936Z"}
+info: Benchmark completed: integration_test_benchmark - 61.36ms avg {"timestamp":"2025-08-02T03:36:32.304Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:36:32.304Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:36:32.304Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:36:32.304Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:36:32.304Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:36:32.304Z"}
+info: Integration validation completed in 370ms {"timestamp":"2025-08-02T03:36:32.305Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-02T03:36:32.305Z"}
+info: System Health Score: 90.9% {"timestamp":"2025-08-02T03:36:32.305Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:36:32.320Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:36:32.320Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:36:32.320Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:36:32.320Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:36:32.320Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:36:32.320Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:36:32.320Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:36:32.320Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:36:32.320Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:36:32.320Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:36:32.320Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:36:32.320Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:36:32.320Z"}
+info: Benchmark completed: integration_test_benchmark - 55.03ms avg {"timestamp":"2025-08-02T03:36:32.641Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:36:32.641Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:36:32.642Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:36:32.642Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:36:32.642Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:36:32.642Z"}
+info: Integration validation completed in 322ms {"timestamp":"2025-08-02T03:36:32.642Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-02T03:36:32.642Z"}
+info: Generated 2 recommendations and identified 3 critical issues {"timestamp":"2025-08-02T03:36:32.643Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:36:32.656Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:36:32.656Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:36:32.656Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:36:32.656Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:36:32.656Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:36:32.656Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:36:32.656Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:36:32.656Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:36:32.656Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:36:32.656Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:36:32.656Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:36:32.656Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:36:32.656Z"}
+info: Benchmark completed: integration_test_benchmark - 55.52ms avg {"timestamp":"2025-08-02T03:36:32.978Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:36:32.978Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:36:32.979Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:36:32.979Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:36:32.979Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:36:32.979Z"}
+info: Integration validation completed in 323ms {"timestamp":"2025-08-02T03:36:32.979Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-02T03:36:32.980Z"}
+info: Validated integration of 7 Phase 2 Week 3 components {"timestamp":"2025-08-02T03:36:32.980Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:36:32.994Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:36:32.994Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:36:32.994Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:36:32.994Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:36:32.994Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:36:32.994Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:36:32.995Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:36:32.995Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:36:32.995Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:36:32.995Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:36:32.995Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:36:32.995Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:36:32.995Z"}
+info: Benchmark completed: integration_test_benchmark - 55.09ms avg {"timestamp":"2025-08-02T03:36:33.316Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:36:33.316Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:36:33.316Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:36:33.316Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:36:33.316Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:36:33.316Z"}
+info: Integration validation completed in 323ms {"timestamp":"2025-08-02T03:36:33.317Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-02T03:36:33.317Z"}
+info: Starting integration validation... {"timestamp":"2025-08-02T03:36:33.331Z"}
+info: Running test suite: Core Services Integration {"timestamp":"2025-08-02T03:36:33.331Z"}
+debug: Running test: Analytics Service Initialization {"timestamp":"2025-08-02T03:36:33.331Z"}
+debug: Running test: Dashboard Creation {"timestamp":"2025-08-02T03:36:33.331Z"}
+debug: Running test: Report Generation {"timestamp":"2025-08-02T03:36:33.331Z"}
+debug: Running test: Cross-Service Data Flow {"timestamp":"2025-08-02T03:36:33.331Z"}
+warn: Critical test suite Core Services Integration had failures {"timestamp":"2025-08-02T03:36:33.331Z"}
+info: Running test suite: Performance Services Integration {"timestamp":"2025-08-02T03:36:33.331Z"}
+debug: Running test: Performance Monitoring {"timestamp":"2025-08-02T03:36:33.331Z"}
+debug: Running test: Database Optimization {"timestamp":"2025-08-02T03:36:33.331Z"}
+debug: Running test: Benchmarking Service {"timestamp":"2025-08-02T03:36:33.332Z"}
+info: Starting benchmark: integration_test_benchmark {"timestamp":"2025-08-02T03:36:33.332Z"}
+info: Running 1 warmup iterations {"timestamp":"2025-08-02T03:36:33.332Z"}
+info: Benchmark completed: integration_test_benchmark - 58.17ms avg {"timestamp":"2025-08-02T03:36:33.683Z"}
+debug: Running test: Enhanced Version Service {"timestamp":"2025-08-02T03:36:33.683Z"}
+info: Running test suite: Error Handling and Edge Cases {"timestamp":"2025-08-02T03:36:33.683Z"}
+debug: Running test: Service Failure Recovery {"timestamp":"2025-08-02T03:36:33.683Z"}
+debug: Running test: Invalid Data Handling {"timestamp":"2025-08-02T03:36:33.684Z"}
+debug: Running test: Concurrent Access {"timestamp":"2025-08-02T03:36:33.684Z"}
+info: Integration validation completed in 353ms {"timestamp":"2025-08-02T03:36:33.684Z"}
+info: Results: 7/11 passed (63.6%) {"timestamp":"2025-08-02T03:36:33.684Z"}
+info: Performance monitoring stopped {"timestamp":"2025-08-02T03:36:33.698Z"}
+info: Cleaned up 1 old records from performance_metrics {"timestamp":"2025-08-02T03:36:33.698Z"}
+info: Cleaned up 1 old records from query_performance {"timestamp":"2025-08-02T03:36:33.698Z"}
+info: Cleaned up 1 old records from resource_metrics {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Cleaned up 1 old records from performance_alerts {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Performance monitoring service destroyed {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Database optimization service destroyed {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Performance benchmarking service destroyed {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Performance monitoring stopped {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Performance monitoring stopped {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Cleaned up 1 old records from performance_metrics {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Cleaned up 1 old records from query_performance {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Cleaned up 1 old records from resource_metrics {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Cleaned up 1 old records from performance_alerts {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Performance monitoring service destroyed {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Database optimization service destroyed {"timestamp":"2025-08-02T03:36:33.699Z"}
+info: Performance benchmarking service destroyed {"timestamp":"2025-08-02T03:36:33.699Z"}
+error: Error during service destruction: this.analyticsService.destroy is not a function {"stack":"TypeError: this.analyticsService.destroy is not a function\n    at PerformanceEnhancedDocumentVersionService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\PerformanceEnhancedDocumentVersionService.ts:564:45)\n    at IntegrationValidationService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\IntegrationValidationService.ts:949:25)\n    at Object.<anonymous> (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\__tests__\\integration\\SystemIntegrationValidation.test.ts:56:9)","timestamp":"2025-08-02T03:36:33.700Z"}
+warn: Failed to destroy service enhancedVersionService: this.analyticsService.destroy is not a function {"stack":"TypeError: this.analyticsService.destroy is not a function\n    at PerformanceEnhancedDocumentVersionService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\PerformanceEnhancedDocumentVersionService.ts:564:45)\n    at IntegrationValidationService.destroy (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\services\\IntegrationValidationService.ts:949:25)\n    at Object.<anonymous> (E:\\Programing\\1. MG\\secondtask\\castplan-mcp\\src\\__tests__\\integration\\SystemIntegrationValidation.test.ts:56:9)","timestamp":"2025-08-02T03:36:33.700Z"}
+info: Integration Validation Service destroyed {"timestamp":"2025-08-02T03:36:33.700Z"}

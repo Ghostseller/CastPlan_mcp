@@ -1,10 +1,13 @@
 import { marked } from 'marked';
 import * as yaml from 'js-yaml';
 import matter from 'gray-matter';
+import { Mutex } from 'async-mutex';
+import { getErrorMessage } from '../utils/typeHelpers.ts';
 export class BMADService {
     agents = [];
     tasks = [];
     assignments = [];
+    stateMutex = new Mutex();
     constructor() {
         this.initializeDefaultAgents();
     }
@@ -60,47 +63,61 @@ export class BMADService {
             }
         ];
     }
+    /**
+     * Parse specification document with comprehensive error handling
+     * @param request - Parse specification request with content and options
+     * @returns Promise resolving to parsed specification response
+     * @throws Error with detailed context if parsing fails
+     */
     async parseSpecification(request) {
-        const { content, format, options = { generateTasks: false, autoAssign: false, validate: false } } = request;
-        let spec;
-        try {
-            switch (format) {
-                case 'markdown':
-                    spec = await this.parseMarkdown(content);
-                    break;
-                case 'yaml':
-                    spec = await this.parseYAML(content);
-                    break;
-                case 'plain':
-                    spec = await this.parsePlainText(content);
-                    break;
-                default:
-                    throw new Error(`Unsupported format: ${format}`);
-            }
-            let tasks = [];
-            let assignments = [];
-            let validation = [];
-            if (options.generateTasks) {
-                tasks = await this.generateTasks(spec);
-                this.tasks.push(...tasks);
-            }
-            if (options.autoAssign && tasks.length > 0) {
-                assignments = await this.assignTasks(tasks);
-                this.assignments.push(...assignments);
-            }
-            if (options.validate && tasks.length > 0) {
-                validation = await this.validateTasks(tasks);
-            }
-            return {
-                spec,
-                tasks,
-                assignments,
-                validation: validation.length > 0 ? validation : undefined
-            };
+        if (!request?.content?.trim()) {
+            throw new Error('Parse request must contain non-empty content');
         }
-        catch (error) {
-            throw new Error(`Failed to parse specification: ${error.message}`);
-        }
+        return this.stateMutex.runExclusive(async () => {
+            const { content, format, options = { generateTasks: false, autoAssign: false, validate: false } } = request;
+            let spec;
+            try {
+                switch (format) {
+                    case 'markdown':
+                        spec = await this.parseMarkdown(content);
+                        break;
+                    case 'yaml':
+                        spec = await this.parseYAML(content);
+                        break;
+                    case 'plain':
+                        spec = await this.parsePlainText(content);
+                        break;
+                    default:
+                        throw new Error(`Unsupported format: ${format}. Supported formats: markdown, yaml, plain`);
+                }
+                let tasks = [];
+                let assignments = [];
+                let validation = [];
+                if (options.generateTasks) {
+                    tasks = await this.generateTasks(spec);
+                    // Atomic update to shared tasks array
+                    this.tasks = [...this.tasks, ...tasks];
+                }
+                if (options.autoAssign && tasks.length > 0) {
+                    assignments = await this.assignTasks(tasks);
+                    // Atomic update to shared assignments array
+                    this.assignments = [...this.assignments, ...assignments];
+                }
+                if (options.validate && tasks.length > 0) {
+                    validation = await this.validateTasks(tasks);
+                }
+                return {
+                    spec,
+                    tasks,
+                    assignments,
+                    validation: validation.length > 0 ? validation : undefined
+                };
+            }
+            catch (error) {
+                const errorMsg = getErrorMessage(error);
+                throw new Error(`Failed to parse specification (format: ${format}): ${errorMsg}`);
+            }
+        });
     }
     async parseMarkdown(content) {
         const { data: frontMatter, content: markdown } = matter(content);
@@ -126,20 +143,24 @@ export class BMADService {
     async parseYAML(content) {
         try {
             const data = yaml.load(content);
+            if (!data || typeof data !== 'object') {
+                throw new Error('YAML content must be a valid object');
+            }
             return {
                 id: this.generateId(),
-                title: data.title || 'Untitled Specification',
-                summary: data.summary || 'No summary provided',
+                title: (typeof data.title === 'string' ? data.title : null) || 'Untitled Specification',
+                summary: (typeof data.summary === 'string' ? data.summary : null) || 'No summary provided',
                 sections: this.convertYAMLToSections(data),
-                requirements: data.requirements || [],
-                metadata: data.metadata || {},
+                requirements: Array.isArray(data.requirements) ? data.requirements : [],
+                metadata: (typeof data.metadata === 'object' && data.metadata !== null) ? data.metadata : {},
                 timestamp: new Date().toISOString(),
-                userStories: data.userStories || [],
-                useCases: data.useCases || []
+                userStories: Array.isArray(data.userStories) ? data.userStories : [],
+                useCases: Array.isArray(data.useCases) ? data.useCases : []
             };
         }
         catch (error) {
-            throw new Error(`Invalid YAML format: ${error.message}`);
+            const errorMsg = getErrorMessage(error);
+            throw new Error(`Invalid YAML format: ${errorMsg}`);
         }
     }
     async parsePlainText(content) {
@@ -398,9 +419,9 @@ export class BMADService {
     convertYAMLToSections(data) {
         const sections = [];
         for (const [key, value] of Object.entries(data)) {
-            if (typeof value === 'string' || typeof value === 'object') {
+            if (typeof value === 'string' || (typeof value === 'object' && value !== null)) {
                 sections.push({
-                    title: key,
+                    title: String(key),
                     content: typeof value === 'string' ? value : JSON.stringify(value, null, 2),
                     level: 1
                 });

@@ -31,13 +31,12 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       
       - name: Update version
         run: npm version ${{ inputs.version }} --no-git-tag-version
       
-      - name: Build
-        run: npm run build
+      # Skip build - using pre-built dist folder
       
       - name: Publish to npm
         run: npm publish --access public --tag ${{ inputs.tag }}

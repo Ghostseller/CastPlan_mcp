@@ -6,7 +6,7 @@
  * Created: 2025-07-31
  */
 import { Logger } from 'winston';
-import { ClaudeDesktopConfig, ProjectInfo, EnvironmentConfig, PlatformInfo } from './types.js';
+import { ClaudeDesktopConfig, ProjectInfo, EnvironmentConfig, PlatformInfo } from './types.ts';
 export interface ClaudeConfigGenerationOptions {
     /** Server name in Claude Desktop config */
     serverName?: string;

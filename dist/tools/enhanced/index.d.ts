@@ -4,10 +4,11 @@
  * Advanced tools for document lifecycle management and AI analysis
  */
 import { Logger } from 'winston';
-import { MCPTool } from '../../types/index.js';
-import { DateTimeService, DocumentLifecycleService, WorkDocumentConnectionService, DocumentTreeService, AIAnalysisService } from '../../services/index.js';
-import { I18nService } from '../../services/I18nService.js';
-import { UltimateAutomationConfig } from '../../types/index.js';
+import { MCPTool } from '../../types/index.ts';
+import { DateTimeService, DocumentLifecycleService, WorkDocumentConnectionService, DocumentTreeService, AIAnalysisService } from '../../services/index.ts';
+import { I18nService } from '../../services/I18nService.ts';
+import { SemanticChunkingMigrationService } from '../../services/SemanticChunkingMigrationService.ts';
+import { UltimateAutomationConfig } from '../../types/index.ts';
 interface EnhancedServices {
     dateTimeService: DateTimeService;
     lifecycleService: DocumentLifecycleService;
@@ -15,6 +16,7 @@ interface EnhancedServices {
     treeService: DocumentTreeService;
     aiService?: AIAnalysisService;
     i18nService?: I18nService;
+    migrationService?: SemanticChunkingMigrationService;
     logger: Logger;
     config: UltimateAutomationConfig;
 }

@@ -6,8 +6,8 @@
  *
  * Created: 2025-07-31
  */
-import { UniversalConfig, ConfigurationManagerOptions, ConfigValidationResult, ClaudeDesktopConfig } from './types.js';
-import { MCPConfigFile } from './StandardMCPConfigGenerator.js';
+import { UniversalConfig, ConfigurationManagerOptions, ConfigValidationResult, ClaudeDesktopConfig } from './types.ts';
+import { MCPConfigFile } from './StandardMCPConfigGenerator.ts';
 export declare class ConfigurationManager {
     private logger;
     private projectRoot;

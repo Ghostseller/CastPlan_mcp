@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
-import { HookEvent, HookResponse, FileWatchConfig, NotificationConfig, HookRequest } from '../types/hooks.types.js';
-import { HooksServiceDependencies } from '../interfaces/dependencies.js';
+import { HookEvent, HookResponse, FileWatchConfig, NotificationConfig, HookRequest } from '../types/hooks.types.ts';
+import { HooksServiceDependencies } from '../interfaces/dependencies.ts';
 export declare class HooksService extends EventEmitter {
     private projectRoot;
     private watchers;
@@ -9,6 +9,8 @@ export declare class HooksService extends EventEmitter {
     private fileSystem;
     private pathAdapter;
     private watcherFactory;
+    private eventMutex;
+    private watcherMutex;
     constructor(projectRoot: string, dependencies?: HooksServiceDependencies);
     private getDefaultConfig;
     private setupEventHandlers;

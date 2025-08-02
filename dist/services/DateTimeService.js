@@ -1,4 +1,4 @@
-import { I18nService } from './I18nService.js';
+import { I18nService } from './I18nService.ts';
 /**
  * Enhanced DateTime Service for CastPlan Documentation Automation
  *
@@ -35,15 +35,20 @@ export class DateTimeService {
     /**
      * Format date with flexible format support
      * Supports both legacy format strings and localization
+     * @param date - ISO date string or Date object to format
+     * @param format - Output format type
+     * @returns Formatted date string
+     * @throws Error if date is invalid and strict mode is enabled
      */
     formatDate(date, format = 'iso') {
-        const dateObj = new Date(date);
+        const dateObj = date instanceof Date ? date : new Date(date);
         // Check for invalid date
         if (isNaN(dateObj.getTime())) {
+            const errorMsg = `Invalid date provided for formatting: ${date}`;
             if (this.logger) {
-                this.logger.error('Invalid date provided for formatting:', date);
+                this.logger.error(errorMsg);
             }
-            return 'Invalid Date';
+            throw new Error(errorMsg);
         }
         // Handle format options using I18nService
         switch (format) {
@@ -66,11 +71,15 @@ export class DateTimeService {
     }
     /**
      * Parse date string with flexible format support
+     * @param dateString - String representation of date to parse
+     * @param format - Expected format pattern (optional)
+     * @returns Parsed Date object or null if parsing fails
      */
     parseDate(dateString, format) {
         if (!dateString || typeof dateString !== 'string') {
+            const errorMsg = `Invalid input for date parsing: ${dateString}`;
             if (this.logger) {
-                this.logger.error('Failed to parse date:', dateString);
+                this.logger.error(errorMsg);
             }
             return null;
         }
@@ -109,8 +118,9 @@ export class DateTimeService {
             return parsedDate;
         }
         catch (error) {
+            const errorMsg = `Failed to parse date '${dateString}': ${error instanceof Error ? error.message : 'Unknown error'}`;
             if (this.logger) {
-                this.logger.error('Failed to parse date:', dateString);
+                this.logger.error(errorMsg);
             }
             return null;
         }
@@ -131,16 +141,36 @@ export class DateTimeService {
     }
     /**
      * Add days to a date
+     * @param date - Base date
+     * @param days - Number of days to add (can be negative)
+     * @returns New Date object with days added
+     * @throws Error if date is invalid
      */
     addDays(date, days) {
+        if (!(date instanceof Date) || isNaN(date.getTime())) {
+            throw new Error('Invalid date provided to addDays');
+        }
+        if (!Number.isInteger(days)) {
+            throw new Error('Days parameter must be an integer');
+        }
         const result = new Date(date);
         result.setDate(result.getDate() + days);
         return result;
     }
     /**
      * Calculate days between two dates
+     * @param startDate - Start date
+     * @param endDate - End date
+     * @returns Number of days between dates (negative if endDate is before startDate)
+     * @throws Error if either date is invalid
      */
     getDaysBetween(startDate, endDate) {
+        if (!(startDate instanceof Date) || isNaN(startDate.getTime())) {
+            throw new Error('Invalid startDate provided to getDaysBetween');
+        }
+        if (!(endDate instanceof Date) || isNaN(endDate.getTime())) {
+            throw new Error('Invalid endDate provided to getDaysBetween');
+        }
         const diffTime = endDate.getTime() - startDate.getTime();
         return Math.floor(diffTime / (1000 * 60 * 60 * 24));
     }
