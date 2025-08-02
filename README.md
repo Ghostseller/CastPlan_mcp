@@ -2,7 +2,7 @@
 
 **Transform your coding experience with AI-powered intelligent assistance** - CastPlan MCP creates a natural, intuitive vibe coding environment where AI understands your project deeply and helps you code in the flow.
 
-[![npm version](https://badge.fury.io/js/%40castplan%2Fautomation-mcp.svg)](https://badge.fury.io/js/%40castplan%2Fautomation-mcp)
+[![npm version](https://badge.fury.io/js/castplan-automation-mcp.svg)](https://badge.fury.io/js/castplan-automation-mcp)
 [![Python Package](https://img.shields.io/pypi/v/castplan-automation.svg)](https://pypi.org/project/castplan-automation/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Cross-Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-blue)](https://github.com/Ghostseller/CastPlan_mcp)

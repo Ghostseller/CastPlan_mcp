@@ -27,7 +27,22 @@ jobs:
       # Skip build - using pre-built dist folder
       # Skip tests - already tested during development
       
+      - name: Check if version is already published
+        id: check
+        run: |
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          
+          if npm view "$PACKAGE_NAME@$PACKAGE_VERSION" version 2>/dev/null; then
+            echo "Version $PACKAGE_VERSION is already published"
+            echo "already_published=true" >> $GITHUB_OUTPUT
+          else
+            echo "Version $PACKAGE_VERSION is not published yet"
+            echo "already_published=false" >> $GITHUB_OUTPUT
+          fi
+      
       - name: Publish to npm
+        if: steps.check.outputs.already_published != 'true'
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
