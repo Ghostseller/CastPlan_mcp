@@ -1,0 +1,44 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v2.1.0
+          release_name: v2.1.0 - Intelligent Vibe Coding Environment
+          body: |
+            ## 🚀 CastPlan MCP 2.1.0
+
+            ### What's New
+            - **Intelligent Vibe Coding Environment**: Transform your coding experience with AI-powered assistance
+            - **4-Layer Architecture**: MCP Protocol, Infrastructure, Enhanced Services, Core Services
+            - **100+ AI-Powered Services**: Complete test coverage with 2,837+ test cases
+            - **Universal Package Support**: Works with npm, yarn, pnpm, pip, uv, uvx
+            - **Auto-Recovery & Health Monitoring**: Built-in resilience and monitoring
+            - **Intelligent Caching**: Redis-powered AI analysis caching
+            - **I18n Support**: Automatic locale detection and timezone support
+
+            ### Installation
+            ```bash
+            npm install -g castplan-automation-mcp
+            ```
+
+            ### npm Package
+            https://www.npmjs.com/package/castplan-automation-mcp
+          draft: false
+          prerelease: false
