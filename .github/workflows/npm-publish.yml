@@ -27,13 +27,12 @@ jobs:
       # Skip build - using pre-built dist folder
       # Skip tests - already tested during development
       
-      - name: Create .npmrc
+      - name: Install npm-cli-login
+        run: npm install -g npm-cli-login
+      
+      - name: Login to npm
         run: |
-          echo "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" > ~/.npmrc
-          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
-          echo "always-auth=true" >> ~/.npmrc
+          npm-cli-login -u banessayuu -p "dpavldpadyd!2" -e banessayuu@gmail.com -r https://registry.npmjs.org
       
       - name: Publish to npm
         run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
