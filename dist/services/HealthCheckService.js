@@ -10,7 +10,7 @@
 import { EventEmitter } from 'events';
 import * as fs from 'fs';
 import * as path from 'path';
-import { getErrorMessage } from '../utils/typeHelpers.ts';
+import { getErrorMessage } from '../utils/typeHelpers.js';
 // =============================================================================
 // HEALTH CHECK SERVICE
 // =============================================================================

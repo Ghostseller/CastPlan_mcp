@@ -9,7 +9,7 @@
  * Author: Backend Architect & Data Analytics Specialist
  */
 import { AnalyticsError } from '../types/analytics.types';
-import { getErrorMessage } from '../utils/typeHelpers.ts';
+import { getErrorMessage } from '../utils/typeHelpers.js';
 /**
  * Advanced Version Analytics Service
  *

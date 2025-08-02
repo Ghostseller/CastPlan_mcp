@@ -9,11 +9,11 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import * as os from 'os';
-import { ProjectAnalyzer } from './ProjectAnalyzer.ts';
-import { PackageManagerDetector } from './PackageManagerDetector.ts';
-import { EnvGenerator } from './EnvGenerator.ts';
-import { ClaudeDesktopConfigGenerator } from './ClaudeDesktopConfigGenerator.ts';
-import { StandardMCPConfigGenerator } from './StandardMCPConfigGenerator.ts';
+import { ProjectAnalyzer } from './ProjectAnalyzer.js';
+import { PackageManagerDetector } from './PackageManagerDetector.js';
+import { EnvGenerator } from './EnvGenerator.js';
+import { ClaudeDesktopConfigGenerator } from './ClaudeDesktopConfigGenerator.js';
+import { StandardMCPConfigGenerator } from './StandardMCPConfigGenerator.js';
 export class ConfigurationManager {
     logger;
     projectRoot;

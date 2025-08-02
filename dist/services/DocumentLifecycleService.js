@@ -1,8 +1,8 @@
 import Database from 'better-sqlite3';
 import { v4 as uuidv4 } from 'uuid';
 import { Mutex } from 'async-mutex';
-import { ConcurrencyManager } from './ConcurrencyManager.ts';
-import { getErrorMessage } from '../utils/typeHelpers.ts';
+import { ConcurrencyManager } from './ConcurrencyManager.js';
+import { getErrorMessage } from '../utils/typeHelpers.js';
 /**
  * Document Lifecycle Management Service
  *

@@ -147,13 +147,13 @@ export class EnvGenerator {
         // Add type-specific patterns
         switch (this.projectInfo.type) {
             case 'node':
-                patterns.push('**/*.js', '**/*.ts', '**/*.jsx', '**/*.tsx', '**/*.json');
+                patterns.push('**/*.js', '**/*.js', '**/*.jsx', '**/*.tsx', '**/*.json');
                 break;
             case 'python':
                 patterns.push('**/*.py', '**/*.pyi', '**/*.toml', '**/*.txt');
                 break;
             case 'mixed':
-                patterns.push('**/*.js', '**/*.ts', '**/*.jsx', '**/*.tsx', '**/*.json');
+                patterns.push('**/*.js', '**/*.js', '**/*.jsx', '**/*.tsx', '**/*.json');
                 patterns.push('**/*.py', '**/*.pyi', '**/*.toml', '**/*.txt');
                 break;
         }

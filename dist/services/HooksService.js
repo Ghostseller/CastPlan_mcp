@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as chokidar from 'chokidar';
 import { EventEmitter } from 'events';
 import { Mutex } from 'async-mutex';
-import { getErrorMessage } from '../utils/typeHelpers.ts';
+import { getErrorMessage } from '../utils/typeHelpers.js';
 // Default implementations
 class DefaultFileSystemAdapter {
     existsSync(path) {
@@ -78,7 +78,7 @@ export class HooksService extends EventEmitter {
         return {
             fileWatch: {
                 patterns: [
-                    '**/*.ts',
+                    '**/*.js',
                     '**/*.tsx',
                     '**/*.js',
                     '**/*.jsx',
@@ -345,7 +345,7 @@ fi
     async generatePreWorkRecommendations(files, context) {
         const recommendations = [];
         // Check if documentation should be referenced
-        if (files.some(f => f.includes('.ts') || f.includes('.tsx'))) {
+        if (files.some(f => f.includes('.js') || f.includes('.tsx'))) {
             recommendations.push('Consider reviewing TypeScript best practices documentation');
         }
         if (files.some(f => f.includes('test'))) {
@@ -363,7 +363,7 @@ fi
         const validations = [];
         try {
             // Lint check for TypeScript files
-            const tsFiles = files.filter(f => f.endsWith('.ts') || f.endsWith('.tsx'));
+            const tsFiles = files.filter(f => f.endsWith('.js') || f.endsWith('.tsx'));
             if (tsFiles.length > 0) {
                 validations.push({
                     type: 'lint',

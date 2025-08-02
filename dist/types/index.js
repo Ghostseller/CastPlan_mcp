@@ -8,8 +8,8 @@
  * - Enhanced AI-powered Documentation Features
  */
 // Re-export all type modules - conflicts resolved by removing duplicates from bmad.types.ts
-export * from './bmad.types.ts';
-export * from './documentation.types.ts';
-export * from './hooks.types.ts';
-export * from './enhanced.types.ts';
+export * from './bmad.types.js';
+export * from './documentation.types.js';
+export * from './hooks.types.js';
+export * from './enhanced.types.js';
 //# sourceMappingURL=index.js.map

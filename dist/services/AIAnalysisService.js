@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid';
 import { Mutex } from 'async-mutex';
-import { getErrorMessage } from '../utils/typeHelpers.ts';
+import { getErrorMessage } from '../utils/typeHelpers.js';
 /**
  * AI Analysis Service
  *

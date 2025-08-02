@@ -1,4 +1,4 @@
-import { I18nService } from './I18nService.ts';
+import { I18nService } from './I18nService.js';
 /**
  * Enhanced DateTime Service for CastPlan Documentation Automation
  *

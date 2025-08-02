@@ -16,7 +16,7 @@ export class ContentParser {
     // Document type patterns
     DOCUMENT_TYPE_PATTERNS = {
         markdown: ['.md', '.mdx', '.markdown'],
-        code: ['.ts', '.js', '.tsx', '.jsx', '.py', '.java', '.cpp', '.c', '.go', '.rs', '.php'],
+        code: ['.js', '.js', '.tsx', '.jsx', '.py', '.java', '.cpp', '.c', '.go', '.rs', '.php'],
         text: ['.txt', '.log', '.csv'],
         json: ['.json', '.jsonl'],
         xml: ['.xml', '.html', '.xhtml'],
@@ -551,7 +551,7 @@ export class ContentParser {
         if (filePath) {
             const extension = filePath.toLowerCase().substring(filePath.lastIndexOf('.'));
             const languageMap = {
-                '.ts': 'typescript',
+                '.js': 'typescript',
                 '.tsx': 'typescript',
                 '.js': 'javascript',
                 '.jsx': 'javascript',

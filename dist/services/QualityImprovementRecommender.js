@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { IssueSeverity, IssueType } from './QualityIssueDetector.ts';
+import { IssueSeverity, IssueType } from './QualityIssueDetector.js';
 /**
  * Quality Improvement Recommender - Phase 4 Week 2
  *

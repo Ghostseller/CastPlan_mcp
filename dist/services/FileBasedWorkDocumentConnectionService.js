@@ -1,4 +1,4 @@
-import { NodeAsyncFileSystem, NodePathUtils } from '../adapters/NodeFileSystemAdapter.ts';
+import { NodeAsyncFileSystem, NodePathUtils } from '../adapters/NodeFileSystemAdapter.js';
 export class WorkDocumentConnectionService {
     logger;
     fs;

@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { getErrorMessage } from '../utils/typeHelpers.ts';
+import { getErrorMessage } from '../utils/typeHelpers.js';
 export class ConcurrencyManager extends EventEmitter {
     logger;
     taskQueue = new Map();

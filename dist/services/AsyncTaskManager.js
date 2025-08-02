@@ -9,7 +9,7 @@
  */
 import { EventEmitter } from 'events';
 import { performance } from 'perf_hooks';
-import { getErrorMessage } from '../utils/typeHelpers.ts';
+import { getErrorMessage } from '../utils/typeHelpers.js';
 // =============================================================================
 // ASYNC TASK MANAGER
 // =============================================================================

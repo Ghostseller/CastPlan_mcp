@@ -3,7 +3,7 @@
  *
  * Advanced tools for document lifecycle management and AI analysis
  */
-import { I18nService } from '../../services/I18nService.ts';
+import { I18nService } from '../../services/I18nService.js';
 import * as fs from 'fs/promises';
 export function registerEnhancedTools(tools, services) {
     const { dateTimeService, lifecycleService, connectionService, treeService, aiService, i18nService, migrationService, logger, config } = services;

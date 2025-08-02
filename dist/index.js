@@ -17,25 +17,25 @@ import { CallToolRequestSchema, ErrorCode, ListResourcesRequestSchema, ListTools
 import * as winston from 'winston';
 import * as path from 'path';
 // Import services
-import { BMADService } from './services/BMADService.ts';
-import { DocumentationService } from './services/DocumentationService.ts';
-import { HooksService } from './services/HooksService.ts';
-import { DateTimeService } from './services/DateTimeService.ts';
-import { DocumentLifecycleService } from './services/DocumentLifecycleService.ts';
-import { WorkDocumentConnectionService } from './services/WorkDocumentConnectionService.ts';
-import { DocumentTreeService } from './services/DocumentTreeService.ts';
-import { AIAnalysisService } from './services/AIAnalysisService.ts';
-import { I18nService } from './services/I18nService.ts';
-import { RedisCacheService } from './services/RedisCacheService.ts';
+import { BMADService } from './services/BMADService.js';
+import { DocumentationService } from './services/DocumentationService.js';
+import { HooksService } from './services/HooksService.js';
+import { DateTimeService } from './services/DateTimeService.js';
+import { DocumentLifecycleService } from './services/DocumentLifecycleService.js';
+import { WorkDocumentConnectionService } from './services/WorkDocumentConnectionService.js';
+import { DocumentTreeService } from './services/DocumentTreeService.js';
+import { AIAnalysisService } from './services/AIAnalysisService.js';
+import { I18nService } from './services/I18nService.js';
+import { RedisCacheService } from './services/RedisCacheService.js';
 // Import tool handlers
-import { registerBMADTools } from './tools/bmad/index.ts';
-import { registerDocumentationTools } from './tools/documentation/index.ts';
-import { registerHooksTools } from './tools/hooks/index.ts';
-import { registerEnhancedTools } from './tools/enhanced/index.ts';
+import { registerBMADTools } from './tools/bmad/index.js';
+import { registerDocumentationTools } from './tools/documentation/index.js';
+import { registerHooksTools } from './tools/hooks/index.js';
+import { registerEnhancedTools } from './tools/enhanced/index.js';
 // Import error recovery and monitoring
-import { ErrorRecoveryManager } from './utils/ErrorRecoveryManager.ts';
-import { HealthMonitor, BuiltInHealthChecks } from './utils/HealthMonitor.ts';
-import { GracefulDegradationManager } from './utils/GracefulDegradation.ts';
+import { ErrorRecoveryManager } from './utils/ErrorRecoveryManager.js';
+import { HealthMonitor, BuiltInHealthChecks } from './utils/HealthMonitor.js';
+import { GracefulDegradationManager } from './utils/GracefulDegradation.js';
 class CastPlanUltimateAutomationServer {
     server;
     config;

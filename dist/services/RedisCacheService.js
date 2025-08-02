@@ -10,7 +10,7 @@
 import Redis from 'ioredis';
 import { EventEmitter } from 'events';
 import { performance } from 'perf_hooks';
-import { getErrorMessage } from '../utils/typeHelpers.ts';
+import { getErrorMessage } from '../utils/typeHelpers.js';
 // =============================================================================
 // REDIS CACHE SERVICE
 // =============================================================================

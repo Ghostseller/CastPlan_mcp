@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ContentParser } from './ContentParser.ts';
-import { ChunkBoundaryDetector } from './ChunkBoundaryDetector.ts';
+import { ContentParser } from './ContentParser.js';
+import { ChunkBoundaryDetector } from './ChunkBoundaryDetector.js';
 /**
  * Semantic Chunking Service
  *
@@ -62,11 +62,11 @@ export class SemanticChunkingService {
     async registerChunkingStrategies() {
         try {
             // Import and register chunking strategies
-            const { SemanticChunkingStrategy } = await import('./ChunkingStrategies/SemanticChunkingStrategy.ts');
-            const { StructuralChunkingStrategy } = await import('./ChunkingStrategies/StructuralChunkingStrategy.ts');
-            const { FixedSizeChunkingStrategy } = await import('./ChunkingStrategies/FixedSizeChunkingStrategy.ts');
-            const { OverlapChunkingStrategy } = await import('./ChunkingStrategies/OverlapChunkingStrategy.ts');
-            const { HybridChunkingStrategy } = await import('./ChunkingStrategies/HybridChunkingStrategy.ts');
+            const { SemanticChunkingStrategy } = await import('./ChunkingStrategies/SemanticChunkingStrategy.js');
+            const { StructuralChunkingStrategy } = await import('./ChunkingStrategies/StructuralChunkingStrategy.js');
+            const { FixedSizeChunkingStrategy } = await import('./ChunkingStrategies/FixedSizeChunkingStrategy.js');
+            const { OverlapChunkingStrategy } = await import('./ChunkingStrategies/OverlapChunkingStrategy.js');
+            const { HybridChunkingStrategy } = await import('./ChunkingStrategies/HybridChunkingStrategy.js');
             this.chunkingStrategies.set('semantic', new SemanticChunkingStrategy(this.logger, this.aiAnalysisService));
             this.chunkingStrategies.set('structural', new StructuralChunkingStrategy(this.logger, this.contentParser));
             this.chunkingStrategies.set('fixed-size', new FixedSizeChunkingStrategy(this.logger));

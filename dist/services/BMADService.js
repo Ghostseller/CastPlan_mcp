@@ -2,7 +2,7 @@ import { marked } from 'marked';
 import * as yaml from 'js-yaml';
 import matter from 'gray-matter';
 import { Mutex } from 'async-mutex';
-import { getErrorMessage } from '../utils/typeHelpers.ts';
+import { getErrorMessage } from '../utils/typeHelpers.js';
 export class BMADService {
     agents = [];
     tasks = [];

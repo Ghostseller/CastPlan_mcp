@@ -7,10 +7,10 @@
  *
  * Created: 2025-07-31
  */
-export { ConfigurationManager } from './ConfigurationManager.ts';
-export { ProjectAnalyzer } from './ProjectAnalyzer.ts';
-export { PackageManagerDetector } from './PackageManagerDetector.ts';
-export { EnvGenerator } from './EnvGenerator.ts';
-export { ClaudeDesktopConfigGenerator } from './ClaudeDesktopConfigGenerator.ts';
-export { StandardMCPConfigGenerator } from './StandardMCPConfigGenerator.ts';
+export { ConfigurationManager } from './ConfigurationManager.js';
+export { ProjectAnalyzer } from './ProjectAnalyzer.js';
+export { PackageManagerDetector } from './PackageManagerDetector.js';
+export { EnvGenerator } from './EnvGenerator.js';
+export { ClaudeDesktopConfigGenerator } from './ClaudeDesktopConfigGenerator.js';
+export { StandardMCPConfigGenerator } from './StandardMCPConfigGenerator.js';
 //# sourceMappingURL=index.js.map

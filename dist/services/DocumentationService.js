@@ -1,5 +1,5 @@
-import { NodeSyncFileSystem, NodePathUtils } from '../adapters/NodeFileSystemAdapter.ts';
-import { I18nService } from './I18nService.ts';
+import { NodeSyncFileSystem, NodePathUtils } from '../adapters/NodeFileSystemAdapter.js';
+import { I18nService } from './I18nService.js';
 import { Mutex } from 'async-mutex';
 export class DocumentationService {
     projectRoot;
@@ -19,7 +19,7 @@ export class DocumentationService {
             priority: ['components', 'pages', 'architecture', 'workflows']
         },
         backend: {
-            patterns: ['/backend/', '.ts', '.js', 'api/', 'routes/', 'services/', 'graphql/'],
+            patterns: ['/backend/', '.js', '.js', 'api/', 'routes/', 'services/', 'graphql/'],
             docPath: 'backend',
             priority: ['api', 'services', 'database', 'deployment']
         },

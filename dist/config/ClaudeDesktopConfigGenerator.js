@@ -64,7 +64,7 @@ export class ClaudeDesktopConfigGenerator {
         }
         // Project-specific installation
         const distPath = path.join(this.projectInfo.root, 'dist', 'index.js');
-        const srcPath = path.join(this.projectInfo.root, 'src', 'index.ts');
+        const srcPath = path.join(this.projectInfo.root, 'src', 'index.js');
         // Check if compiled version exists
         try {
             require.resolve(distPath);

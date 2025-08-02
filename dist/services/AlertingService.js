@@ -8,7 +8,7 @@
  * Author: DevOps Engineer & Backend Architect
  */
 import { EventEmitter } from 'events';
-import { getErrorMessage } from '../utils/typeHelpers.ts';
+import { getErrorMessage } from '../utils/typeHelpers.js';
 // =============================================================================
 // ALERTING SERVICE
 // =============================================================================

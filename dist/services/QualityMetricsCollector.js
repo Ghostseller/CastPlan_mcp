@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { IssueSeverity } from './QualityIssueDetector.ts';
+import { IssueSeverity } from './QualityIssueDetector.js';
 export var QualityMetricType;
 (function (QualityMetricType) {
     // Quality Dimension Scores

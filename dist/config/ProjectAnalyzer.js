@@ -121,7 +121,7 @@ export class ProjectAnalyzer {
         const files = await this.getProjectFiles();
         const hasNodeFiles = files.some(f => f.endsWith('package.json') ||
             f.endsWith('.js') ||
-            f.endsWith('.ts') ||
+            f.endsWith('.js') ||
             f.endsWith('.jsx') ||
             f.endsWith('.tsx'));
         const hasPythonFiles = files.some(f => f.endsWith('pyproject.toml') ||

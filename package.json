@@ -1,5 +1,5 @@
 {
-  "name": "@castplan/automation-mcp",
+  "name": "castplan-automation-mcp",
   "version": "2.1.0",
   "description": "CastPlan Automation MCP Server - Universal auto-configuration for any project",
   "type": "module",
